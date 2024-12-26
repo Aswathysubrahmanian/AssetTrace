@@ -1,0 +1,377 @@
+
+
+
+
+
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+
+{% block body %}
+<div class="container py-5">
+    <!-- Header Section - Add more padding and improve alignment -->
+    <div class="card d-flex justify-content-between align-items-center mb-5 p-4" style="border-radius: 20px;">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <h6 class="mb-0">{% trans "Upload your asset files and documentation" %}</h6>
+            <a href="{% url 'download_template' %}" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="fas fa-download me-2"></i>{% trans "Download Template" %}
+            </a>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div class="messages mb-4">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-3 border-0 shadow-sm" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        <!-- Upload Form Section -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4">{% trans "Upload Files" %}</h4>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- File Upload Sections -->
+                        <div class="upload-sections">
+                            <!-- Excel File -->
+                            <div class="upload-box mb-4">
+                                <div class="p-4 border rounded-3 bg-light">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-file-excel fs-4 text-success me-3"></i>
+                                        <div>
+                                            <label for="excel_file" class="form-label fw-semibold mb-0">{% trans "Excel File" %}</label>
+                                            <p class="text-muted small mb-0">{% trans "Upload your asset data spreadsheet" %}</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" class="form-control form-control-lg" id="excel_file" 
+                                           name="excel_file" accept=".xlsx,.xls" required>
+                                </div>
+                            </div>
+
+                            <!-- Images ZIP -->
+                            <div class="upload-box mb-4">
+                                <div class="p-4 border rounded-3 bg-light">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-images fs-4 text-primary me-3"></i>
+                                        <div>
+                                            <label for="images_zip" class="form-label fw-semibold mb-0">{% trans "Images ZIP" %}</label>
+                                            <p class="text-muted small mb-0">{% trans "Compress all asset images in a ZIP file" %}</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" class="form-control form-control-lg" id="images_zip" 
+                                           name="images_zip" accept=".zip">
+                                </div>
+                            </div>
+
+                            <!-- Bills ZIP -->
+                            <div class="upload-box mb-4">
+                                <div class="p-4 border rounded-3 bg-light">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-file-invoice fs-4 text-warning me-3"></i>
+                                        <div>
+                                            <label for="bills_zip" class="form-label fw-semibold mb-0">{% trans "Bills ZIP" %}</label>
+                                            <p class="text-muted small mb-0">{% trans "Compress all bill documents in a ZIP file" %}</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" class="form-control form-control-lg" id="bills_zip" 
+                                           name="bills_zip" accept=".zip">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">
+                            <i class="fas fa-upload me-2"></i>{% trans "Upload Files" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4">{% trans "Upload Guidelines" %}</h4>
+                    
+                    <div class="guidelines-section">
+                        <!-- Excel Guidelines -->
+                        <div class="guideline-box mb-4">
+                            <h5 class="d-flex align-items-center">
+                                <i class="fas fa-table text-success me-3"></i>
+                                {% trans "Excel File Requirements" %}
+                            </h5>
+
+                            <div class="ms-4 mt-3">
+                                <div class="row row-cols-2 g-2 mb-3">
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>asset_type
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>asset_code
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>office
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>branch
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>department
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>asset_name
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-check-circle text-success me-2"></i>price
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <h6 class="text-muted mb-2">{% trans "Optional Fields:" %}</h6>
+                                <div class="row row-cols-2 g-2">
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-circle text-muted me-2"></i>model
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-circle text-muted me-2"></i>serial_number
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-circle text-muted me-2"></i>purchase_date
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-circle text-muted me-2"></i>warranty_info
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge bg-light text-dark border px-3 py-2 w-100">
+                                            <i class="fas fa-circle text-muted me-2"></i>is_sold
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- File Naming Guidelines -->
+                        <div class="naming-guidelines p-4 bg-light rounded-3">
+                            <h5 class="mb-3">{% trans "File Naming Convention" %}</h5>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-image text-primary me-2"></i>
+                                    <span class="fw-semibold">{% trans "Images:" %}</span>
+                                </div>
+                                <code class="d-block bg-white p-2 rounded">ASSET001_front.jpg</code>
+                            </div>
+
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-file-invoice text-warning me-2"></i>
+                                    <span class="fw-semibold">{% trans "Bills:" %}</span>
+                                </div>
+                                <code class="d-block bg-white p-2 rounded">ASSET001_bill.pdf</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+/* Enhanced styles */
+.upload-box .form-control {
+    border: 2px dashed #dee2e6;
+    background: white;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    min-height: 60px;
+}
+
+.upload-box .form-control:hover {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.02);
+}
+
+.upload-box .form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.02);
+}
+
+.badge {
+    font-weight: normal;
+    font-size: 0.9rem;
+    text-align: left;
+    white-space: normal;
+}
+
+code {
+    color: #6c757d;
+    display: block;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #dee2e6;
+}
+
+.guidelines-section {
+    font-size: 0.95rem;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+/* Add loading state styles */
+.upload-in-progress .form-control {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Add drag and drop highlight */
+.upload-box .form-control.dragover {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .row-cols-2 {
+        row-cols: 1!important;
+    }
+    
+    .badge {
+        font-size: 0.8rem;
+    }
+}
+
+
+.upload-in-progress {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.upload-in-progress::after {
+    content: 'Uploading...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+</style>
+
+<!-- Add this JavaScript for drag and drop support -->
+<script>
+document.querySelectorAll('.form-control').forEach(input => {
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        input.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        input.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        input.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        input.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+        input.classList.remove('dragover');
+    }
+
+    input.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        input.files = files;
+    }
+});
+
+// Add loading state when form is submitted
+document.querySelector('form').addEventListener('submit', function(e) {
+    this.closest('.card').classList.add('upload-in-progress');
+});
+
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    const excelFile = document.getElementById('excel_file').files[0];
+    const imagesZip = document.getElementById('images_zip').files[0];
+    const billsZip = document.getElementById('bills_zip').files[0];
+
+    // Validate Excel file
+    if (!excelFile) {
+        e.preventDefault();
+        alert('Please select an Excel file!');
+        return;
+    }
+
+    // Validate ZIP files if they are selected
+    if (imagesZip && !imagesZip.name.toLowerCase().endsWith('.zip')) {
+        e.preventDefault();
+        alert('Images file must be a ZIP file!');
+        return;
+    }
+
+    if (billsZip && !billsZip.name.toLowerCase().endsWith('.zip')) {
+        e.preventDefault();
+        alert('Bills file must be a ZIP file!');
+        return;
+    }
+
+    // Add loading state
+    this.classList.add('upload-in-progress');
+    document.querySelector('button[type="submit"]').disabled = true;
+});
+</script>
+{% endblock %}

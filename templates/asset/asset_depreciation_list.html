@@ -1,0 +1,217 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-1">{% trans "Asset Depreciation List" %}</h4>
+                        <p class="text-muted mb-0">{% trans "Manage and monitor asset depreciation records" %}</p>
+                    </div>
+                    <!-- Search Form -->
+                    <form method="get" class="d-flex gap-2 align-items-center">
+                        <input type="text" name="search" placeholder="{% trans 'Search assets...' %}" value="{{ search_query }}" class="form-control form-control-sm">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fas fa-search me-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Depreciation List Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    {% if assets %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>{% trans "No"%}</th>
+                                    <th>{% trans "Asset Name" %}</th>
+                                    <th>{% trans "Asset Type" %}</th>
+                                    <th>{% trans "Purchase Value" %}</th>
+                                    <th>{% trans "Latest Depreciation Value" %}</th>
+                                    <th>{% trans "Current Book Value" %}</th>
+                                    <th class="text-end">{% trans "Action" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in assets %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ item.asset.asset_name }}</td>
+                                    <td>{{ item.asset.asset_type.name }}</td>
+                                    <td>{{ item.asset.price|floatformat:2 }}</td>
+                                    <td>
+                                        {% if item.latest_depreciation %}
+                                            {{ item.latest_depreciation.1|floatformat:2 }}
+                                        {% else %}
+                                            <span class="text-muted">{% trans "N/A" %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.asset.price|floatformat:2 }}</td>
+                                    <td class="text-end">
+                                        <!-- Actions for Depreciation -->
+                                        {% if item.depreciation %}
+                                            <a href="{% url 'depreciation_detail' pk=item.depreciation.pk %}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title="{% trans 'View Details' %}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            {% if item.depreciation.is_custom %}
+                                                <a href="{% url 'edit_custom_depreciation' pk=item.depreciation.pk %}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title="{% trans 'Edit Custom Depreciation' %}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'edit_standard_depreciation' pk=item.depreciation.pk %}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title="{% trans 'Edit Standard Depreciation' %}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{% url 'create_depreciation' %}?asset={{ item.asset.id }}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="{% trans 'Create Standard Depreciation' %}">
+                                                <i class="fas fa-plus"></i> {% trans "Standard" %}
+                                            </a>
+                                            <a href="{% url 'create_custom_depreciation' %}?asset={{ item.asset.id }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="{% trans 'Create Custom Depreciation' %}">
+                                                <i class="fas fa-plus"></i> {% trans "Custom" %}
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% if assets.paginator.num_pages > 1 %}
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="text-muted">
+            {% trans "Showing" %} {{ assets.start_index }}-{{ assets.end_index }} {% trans "of" %} {{ assets.paginator.count }} {% trans "entries" %}
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm mb-0">
+                {% if assets.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ assets.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in assets.paginator.page_range %}
+                    {% if assets.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > assets.number|add:'-3' and num < assets.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if assets.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ assets.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ assets.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+                    {% else %}
+                    <div class="text-center py-5">
+                        <div class="avatar-lg mb-3 mx-auto">
+                            <i class="fas fa-boxes fa-3x text-muted"></i>
+                        </div>
+                        <h5 class="text-muted font-weight-normal">{% trans "No Depreciation Records Found" %}</h5>
+                        <p class="mb-0 text-muted">{% trans "Start by creating depreciation entries for your assets." %}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .avatar-lg {
+        width: 64px;
+        height: 64px;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .table th, .table td {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .card {
+        animation: fadeIn 0.6s ease-out forwards;
+        border-radius: 1rem;
+    }
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pagination {
+        margin-bottom: 0;
+    }
+    
+    .page-link {
+        padding: 0.375rem 0.75rem;
+        color: #435ebe;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+    
+    .page-item.active .page-link {
+        background-color: #435ebe;
+        border-color: #435ebe;
+    }
+    
+    .page-link:hover {
+        color: #435ebe;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+    
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #fff;
+        border-color: #dee2e6;
+    }
+</style>
+
+<!-- Initialize tooltips -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+});
+</script>
+{% endblock %}

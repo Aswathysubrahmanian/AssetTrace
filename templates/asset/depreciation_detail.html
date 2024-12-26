@@ -1,0 +1,365 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="container-fluid py-4">
+    <div class="custom-card">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-box-archive"></i>
+            </div>
+            <h3>{% trans "Depreciation Details" %}</h3>
+            <p class="text-muted">{% trans "Complete depreciation details for" %} {{ asset.asset_name }}</p>
+        </div>
+
+        <div class="card-body-custom">
+            <!-- Status Banner -->
+            
+
+            <!-- Depreciation Information -->
+            <div class="info-sections">
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h4>{% trans "Basic Depreciation Information" %}</h4>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>{% trans "Purchase Value" %}</label>
+                            <p>{{ depreciation.purchase_value }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Useful Life" %}</label>
+                            <p>{{ depreciation.useful_life }} {% trans "years" %}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Depreciation Method" %}</label>
+                            <p>{{ depreciation.get_depreciation_method_display }}</p>
+                        </div>
+                        {% if depreciation.salvage_value %}
+                        <div class="info-item">
+                            <label>{% trans "Salvage Value" %}</label>
+                            <p>{{ depreciation.salvage_value }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Depreciation Schedule -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>{% trans "Depreciation Schedule" %}</h4>
+                    </div>
+                    <div class="depreciation-table">
+                        <div class="table-header">
+                            <span>{% trans "Year" %}</span>
+                            <span>{% trans "Depreciation Amount" %}</span>
+                            <span>{% trans "Accumulated Depreciation" %}</span>
+                            <span>{% trans "Book Value" %}</span>
+                        </div>
+                        {% for item in depreciation_schedule %}
+                        <div class="table-row">
+                            <span>{{ item.year }}</span>
+                            <span>{{ item.amount|floatformat:2 }}</span>
+                            <span>{{ item.accumulated_depreciation|floatformat:2 }}</span>
+                            <span>{{ item.book_value|floatformat:2 }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Depreciation Actions -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-tools"></i>
+                        <h4>{% trans "Actions" %}</h4>
+                    </div>
+                    <div>
+                        <a href="{% url 'delete_depreciation' depreciation.pk %}" class="action-button warning">
+                            <i class="fas fa-trash"></i>
+                            {% trans "Delete Depreciation" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+        .custom-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    }
+
+    .card-header-custom {
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .header-icon i {
+        font-size: 24px;
+        color: #4776E6;
+    }
+
+    .status-banner {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .status-banner.available {
+        background: #fff8f1;
+        border: 1px solid #ffd5a4;
+    }
+
+    .status-banner.sold {
+        background: #f1fff8;
+        border: 1px solid #a4ffd5;
+    }
+
+    .status-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+    }
+
+    .available .status-icon {
+        background: #fff2e3;
+        color: #ff9500;
+    }
+
+    .sold .status-icon {
+        background: #e3fff2;
+        color: #00ff95;
+    }
+
+    .status-content {
+        flex: 1;
+    }
+
+    .status-content h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .status-content p {
+        margin: 4px 0 0;
+        color: #6c757d;
+    }
+
+    .action-button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .action-button.success {
+        background: #00ff95;
+        color: #006638;
+    }
+
+    .action-button.warning {
+        background: #ff9500;
+        color: #663800;
+    }
+
+    .info-sections {
+        padding: 2rem;
+    }
+
+    .info-section {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header i {
+        font-size: 20px;
+        color: #4776E6;
+    }
+
+    .section-header h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+    }
+
+    .info-item label {
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .info-item p {
+        margin: 0;
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    .depreciation-table {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-weight: 600;
+    }
+
+    .table-row {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .documents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .document-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #2c3e50;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .document-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .qr-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .qr-container img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+        .status-banner {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .status-icon {
+            margin: 0 0 1rem;
+        }
+
+        .status-action {
+            margin-top: 1rem;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Insert the custom-card styles and others from your provided design here */
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}

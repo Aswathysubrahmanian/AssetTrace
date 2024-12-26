@@ -1,0 +1,123 @@
+{% extends 'authentication/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        {% trans "Add Depreciation" %}
+    </div>
+    <div class="card-body">
+        <form id="depreciationForm" method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_asset">{% trans "Asset:" %}</label>
+                {{ form.asset }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_purchase_value">{% trans "Purchase Value:" %}</label>
+                {{ form.purchase_value }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_useful_life">{% trans "Useful Life (years):" %}</label>
+                {{ form.useful_life }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_depreciation_method">{% trans "Depreciation Method:" %}</label>
+                {{ form.depreciation_method }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_salvage_value">{% trans "Salvage Value:" %}</label>
+                {{ form.salvage_value }}
+            </div>
+
+            <div id="customPercentages" style="display: none;">
+                <h4>{% trans "Custom Percentages" %}</h4>
+                <div id="percentageInputs"></div>
+                <button type="button" id="addPercentage" class="btn btn-secondary">{% trans "Add Percentage" %}</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">{% trans "Calculate Depreciation" %}</button>
+        </form>
+
+        <div id="depreciationResults" class="mt-4" style="display: none;">
+            <h3>{% trans "Depreciation Schedule" %}</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Year" %}</th>
+                        <th>{% trans "Depreciation Amount" %}</th>
+                        <th>{% trans "Accumulated Depreciation" %}</th>
+                        <th>{% trans "Book Value" %}</th>
+                    </tr>
+                </thead>
+                <tbody id="depreciationTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+$(document).ready(function() {
+    $('#id_asset').change(function() {
+        var assetId = $(this).val();
+        if (assetId) {
+            $.ajax({
+                url: '{% url "get_asset_details" %}',
+                data: {'asset_id': assetId},
+                dataType: 'json',
+                success: function (data) {
+                    $('#id_purchase_value').val(data.purchase_value);
+                }
+            });
+        }
+    });
+
+    $('#id_depreciation_method').change(function() {
+        if ($(this).val() === 'other') {
+            $('#customPercentages').show();
+        } else {
+            $('#customPercentages').hide();
+        }
+    });
+
+    var yearCount = 1;
+    $('#addPercentage').click(function() {
+        var newInput = '<div class="form-group">' +
+                       '<label for="year' + yearCount + '">Year ' + yearCount + ' Percentage:</label>' +
+                       '<input type="number" id="year' + yearCount + '" name="custom_percentages[' + yearCount + ']" class="form-control" min="0" max="100" step="0.01" required>' +
+                       '</div>';
+        $('#percentageInputs').append(newInput);
+        yearCount++;
+    });
+
+    $('#depreciationForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '{% url "calculate_depreciation" %}',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(data) {
+                $('#depreciationTable').empty();
+                $.each(data, function(index, value) {
+                    var row = '<tr><td>' + value.year + '</td><td>$' + value.depreciation.toFixed(2) + '</td><td>$' + value.accumulated_depreciation.toFixed(2) + '</td><td>$' + value.book_value.toFixed(2) + '</td></tr>';
+                    $('#depreciationTable').append(row);
+                });
+                $('#depreciationResults').show();
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,2915 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-15 15:04+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\authentication\admin.py:9
+msgid "Personal info"
+msgstr ""
+
+#: .\authentication\admin.py:10
+msgid "Permissions"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\_termui_impl.py:518
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\_termui_impl.py:522
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1120
+msgid "Aborted!"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1309
+#: .\myenv\Lib\site-packages\click\decorators.py:559
+msgid "Show this message and exit."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1340
+#: .\myenv\Lib\site-packages\click\core.py:1370
+#, python-brace-format
+msgid "(Deprecated) {text}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1387
+msgid "Options"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1413
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1429
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1636
+msgid "Commands"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1668
+msgid "Missing command."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:1746
+msgid "No such command {name!r}."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2310
+msgid "Value must be an iterable."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2331
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2778
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2808
+msgid "(dynamic)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2821
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\core.py:2834
+msgid "required"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\decorators.py:528
+msgid "Show the version and exit."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:44
+#: .\myenv\Lib\site-packages\click\exceptions.py:80
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:72
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:121
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:123
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:179
+msgid "Missing argument"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:181
+msgid "Missing option"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:183
+msgid "Missing parameter"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:185
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:192
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:212
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:224
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:262
+msgid "unknown error"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\exceptions.py:269
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\parser.py:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\parser.py:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\parser.py:474
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\shell_completion.py:319
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\shell_completion.py:326
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:158
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:174
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:176
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:187
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:243
+msgid "Error: invalid input"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\termui.py:773
+msgid "Press any key to continue..."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:266
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:298
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\types.py:392
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\click\types.py:414
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:470
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:611
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:635
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:822
+msgid "file"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:824
+msgid "directory"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:826
+msgid "path"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:877
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:886
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:894
+#, python-brace-format
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:903
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:912
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:921
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\click\types.py:988
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\contrib\messages\apps.py:16
+msgid "Messages"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\contrib\syndication\apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: .\myenv\Lib\site-packages\django\core\paginator.py:30
+msgid "…"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:70
+msgid "Enter a valid domain name."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:155
+#: .\myenv\Lib\site-packages\django\forms\fields.py:768
+msgid "Enter a valid URL."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:216
+msgid "Enter a valid integer."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:227
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: .\myenv\Lib\site-packages\django\core\validators.py:310
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:318
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:330
+#: .\myenv\Lib\site-packages\django\core\validators.py:339
+#: .\myenv\Lib\site-packages\django\core\validators.py:353
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2215
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:332
+msgid "IPv4"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:341
+#: .\myenv\Lib\site-packages\django\utils\ipv6.py:30
+msgid "IPv6"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:355
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:396
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:402
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:437
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:446
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:455
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:462
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:494
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:512
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:535
+#: .\myenv\Lib\site-packages\django\forms\fields.py:359
+#: .\myenv\Lib\site-packages\django\forms\fields.py:398
+msgid "Enter a number."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:537
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:542
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:547
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:618
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\core\validators.py:680
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\base.py:1571
+#: .\myenv\Lib\site-packages\django\forms\models.py:908
+msgid "and"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\base.py:1573
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1156
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1157
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1159
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1209
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1211
+msgid "String (unlimited)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1320
+msgid "Comma-separated integers"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1421
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1425
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1560
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1429
+msgid "Date (without time)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1556
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1564
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1569
+msgid "Date (with time)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1696
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1698
+msgid "Decimal number"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1859
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1863
+msgid "Duration"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1915
+msgid "Email address"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:1940
+msgid "File path"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2018
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2020
+msgid "Floating point number"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2060
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2062
+msgid "Integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2158
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2175
+msgid "Small integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2183
+msgid "IPv4 address"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2214
+msgid "IP address"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2305
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2306
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2308
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2359
+msgid "Positive big integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2374
+msgid "Positive integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2389
+msgid "Positive small integer"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2405
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2441
+msgid "Text"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2521
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2525
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2529
+msgid "Time"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2637
+msgid "URL"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2661
+msgid "Raw binary data"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2726
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\__init__.py:2728
+msgid "Universally unique identifier"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\files.py:244
+msgid "File"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\files.py:420
+#: .\templates\asset\asset_list.html:633
+msgid "Image"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\json.py:24
+msgid "A JSON object"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\json.py:26
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:932
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:934
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:1228
+msgid "One-to-one relationship"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:1285
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:1287
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\db\models\fields\related.py:1335
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: .\myenv\Lib\site-packages\django\forms\boundfield.py:185
+msgid ":?.!"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:95
+msgid "This field is required."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:308
+msgid "Enter a whole number."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:479
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1260
+msgid "Enter a valid date."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:502
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1261
+msgid "Enter a valid time."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:529
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:563
+msgid "Enter a valid duration."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:564
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:633
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:634
+msgid "No file was submitted."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:635
+msgid "The submitted file is empty."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:637
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:642
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:710
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:882
+#: .\myenv\Lib\site-packages\django\forms\fields.py:968
+#: .\myenv\Lib\site-packages\django\forms\models.py:1592
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:970
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1089
+#: .\myenv\Lib\site-packages\django\forms\models.py:1590
+msgid "Enter a list of values."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1090
+msgid "Enter a complete value."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1329
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\fields.py:1359
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: .\myenv\Lib\site-packages\django\forms\forms.py:94
+msgid ":"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\forms.py:230
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:65
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:70
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:484
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\formsets.py:499
+msgid "Delete"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:901
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:906
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:913
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:922
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:1359
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:1450
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\models.py:1594
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\utils.py:227
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:461
+msgid "Clear"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:462
+msgid "Currently"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:463
+msgid "Change"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:800
+msgid "Unknown"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:801
+msgid "Yes"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\forms\widgets.py:802
+#: .\templates\asset\asset_depreciation_list.html:36
+#: .\templates\asset\asset_list.html:621
+#: .\templates\asset\asset_report.html:434
+#: .\templates\asset\sold_asset_list.html:40
+#: .\templates\authentication\chairman_list.html:34
+#: .\templates\authentication\commission_members_list.html:35
+#: .\templates\authentication\department_list.html:53
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:873
+msgid "yes,no,maybe"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:903
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:920
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:922
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:924
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:926
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:928
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\template\defaultfilters.py:930
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:74
+msgid "p.m."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:75
+msgid "a.m."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:80
+msgid "PM"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:81
+msgid "AM"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:153
+msgid "midnight"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dateformat.py:155
+msgid "noon"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:7
+msgid "Monday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:9
+msgid "Wednesday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:10
+msgid "Thursday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:11
+msgid "Friday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:12
+msgid "Saturday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:13
+msgid "Sunday"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:16
+msgid "Mon"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:17
+msgid "Tue"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:19
+msgid "Thu"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:20
+msgid "Fri"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:22
+msgid "Sun"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:25
+msgid "January"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:26
+msgid "February"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:27
+msgid "March"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:28
+msgid "April"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:29
+msgid "May"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:30
+msgid "June"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:31
+msgid "July"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:32
+msgid "August"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:33
+msgid "September"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:34
+msgid "October"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:35
+msgid "November"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:36
+msgid "December"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:39
+msgid "jan"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:40
+msgid "feb"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:41
+msgid "mar"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:42
+msgid "apr"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:43
+msgid "may"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:44
+msgid "jun"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:45
+msgid "jul"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:46
+msgid "aug"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:47
+msgid "sep"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:48
+msgid "oct"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:49
+msgid "nov"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:50
+msgid "dec"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:55
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:57
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:67
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:69
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:71
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:75
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:77
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\dates.py:78
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\ipv6.py:8
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\text.py:75
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\text.py:286
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: .\myenv\Lib\site-packages\django\utils\text.py:305
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:135
+msgid ", "
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\utils\timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:29
+msgid "Forbidden"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:30
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:34
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:40
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:45
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:54
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:60
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\csrf.py:66
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:64
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:115
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:349
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:380
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:652
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\dates.py:692
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\generic\list.py:169
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\static.py:51
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\static.py:68
+#: .\myenv\Lib\site-packages\django\views\templates\directory_index.html:8
+#: .\myenv\Lib\site-packages\django\views\templates\directory_index.html:11
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:204
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:208
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:217
+msgid "Django Documentation"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:218
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:226
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:227
+msgid "Get started with Django"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:235
+msgid "Django Community"
+msgstr ""
+
+#: .\myenv\Lib\site-packages\django\views\templates\default_urlconf.html:236
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:11
+msgid "Asset Depreciation List"
+msgstr "Asset Depreciation List"
+
+#: .\templates\asset\asset_depreciation_list.html:12
+msgid "Manage and monitor asset depreciation records"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:16
+msgid "Search assets..."
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:37
+#: .\templates\asset\asset_edit.html:67 .\templates\asset\asset_form.html:67
+#: .\templates\asset\asset_report.html:436
+#: .\templates\asset\sold_asset_list.html:41
+#: .\templates\authentication\department_detail.html:37
+#: .\templates\authentication\super_dashboard.html:99
+msgid "Asset Name"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:38
+#: .\templates\asset\asset_detail.html:60 .\templates\asset\asset_edit.html:43
+#: .\templates\asset\asset_form.html:43 .\templates\asset\asset_report.html:308
+#: .\templates\asset\asset_report.html:437
+#: .\templates\asset\sold_asset_list.html:42
+msgid "Asset Type"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:39
+#: .\templates\asset\create_custom_depreciation.html:42
+#: .\templates\asset\create_depreciation.html:42
+#: .\templates\asset\depreciation_detail.html:28
+#: .\templates\asset\edit_custom_depreciation.html:42
+msgid "Purchase Value"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:40
+msgid "Latest Depreciation Value"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:41
+msgid "Current Book Value"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:42
+#: .\templates\authentication\list_of_office.html:29
+msgid "Action"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:56
+msgid "N/A"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:63
+msgid "View Details"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:67
+msgid "Edit Custom Depreciation"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:71
+msgid "Edit Standard Depreciation"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:76
+msgid "Create Standard Depreciation"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:77
+msgid "Standard"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:79
+msgid "Create Custom Depreciation"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:80
+msgid "Custom"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:93
+msgid "Showing"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:93
+#: .\templates\authentication\department_list.html:132
+msgid "of"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:93
+msgid "entries"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:143
+msgid "No Depreciation Records Found"
+msgstr ""
+
+#: .\templates\asset\asset_depreciation_list.html:144
+msgid "Start by creating depreciation entries for your assets."
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:11 .\templates\asset\asset_form.html:13
+msgid "Asset Details"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:12
+msgid "Complete information about"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:22 .\templates\asset\asset_list.html:666
+#: .\templates\authentication\department_detail.html:65
+msgid "Sold"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:22 .\templates\asset\asset_list.html:668
+msgid "Available"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:23
+msgid "This asset has been sold on:"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:23
+msgid "This asset is currently available"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:31
+#: .\templates\asset\sold_asset_list.html:57
+#: .\templates\asset\sold_asset_list.html:58
+msgid "Mark as Unsold"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:39
+msgid "Mark as Sold"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:52
+#: .\templates\asset\asset_full_details.html:213
+#: .\templates\asset\asset_link.html:220
+msgid "Basic Information"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:56 .\templates\asset\asset_edit.html:37
+#: .\templates\asset\asset_form.html:37
+#: .\templates\asset\asset_full_details.html:217
+#: .\templates\asset\asset_link.html:224 .\templates\asset\asset_list.html:624
+#: .\templates\authentication\department_detail.html:34
+msgid "Asset Code"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:64
+#: .\templates\asset\asset_full_details.html:219
+#: .\templates\asset\asset_link.html:226 .\templates\asset\asset_list.html:630
+#: .\templates\authentication\chairman_form.html:23
+#: .\templates\authentication\chairman_list.html:37
+#: .\templates\authentication\commission_member_form.html:23
+#: .\templates\authentication\commission_members_list.html:38
+#: .\templates\authentication\headoffice.html:26
+#: .\templates\authentication\list_of_branches.html:45
+#: .\templates\authentication\list_of_office.html:26
+msgid "Name"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:69 .\templates\asset\asset_edit.html:74
+#: .\templates\asset\asset_form.html:74
+#: .\templates\asset\asset_full_details.html:222
+#: .\templates\asset\asset_link.html:229
+msgid "Model"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:75 .\templates\asset\asset_edit.html:78
+#: .\templates\asset\asset_form.html:78
+#: .\templates\asset\asset_full_details.html:229
+#: .\templates\asset\asset_link.html:236
+msgid "Serial Number"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:81 .\templates\asset\asset_edit.html:82
+#: .\templates\asset\asset_form.html:82
+#: .\templates\asset\asset_full_details.html:236
+#: .\templates\asset\asset_link.html:243
+#: .\templates\asset\asset_report.html:439
+msgid "Purchase Date"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:87
+#: .\templates\asset\asset_full_details.html:243
+#: .\templates\asset\asset_link.html:250
+msgid "Warranty Info"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:93 .\templates\asset\asset_edit.html:93
+#: .\templates\asset\asset_form.html:93 .\templates\asset\asset_report.html:440
+#: .\templates\authentication\department_detail.html:43
+#: .\templates\authentication\super_dashboard.html:102
+msgid "Price"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:99
+#: .\templates\asset\asset_detail.html:112
+msgid "Verification Status"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:100
+#: .\templates\asset\asset_full_details.html:289
+#: .\templates\asset\asset_report.html:435
+msgid "Verified"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:103
+msgid "by"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:106
+msgid "on"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:113
+msgid "Unverified"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:123
+#: .\templates\asset\asset_full_details.html:259
+#: .\templates\asset\asset_link.html:266
+msgid "Custodial Information"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:127
+#: .\templates\asset\asset_full_details.html:263
+#: .\templates\asset\asset_link.html:270
+#: .\templates\authentication\branches.html:42
+#: .\templates\authentication\edit_branch.html:31
+#: .\templates\authentication\list_of_branches.html:42
+msgid "Head Office"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:131 .\templates\asset\asset_edit.html:57
+#: .\templates\asset\asset_form.html:57
+#: .\templates\asset\create_custom_depreciation.html:33
+#: .\templates\asset\create_depreciation.html:33
+#: .\templates\asset\edit_custom_depreciation.html:33
+#: .\templates\asset\sold_asset_list.html:43
+#: .\templates\authentication\department_list.html:59
+msgid "Branch"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:135 .\templates\asset\asset_edit.html:62
+#: .\templates\asset\asset_form.html:62
+#: .\templates\asset\asset_full_details.html:265
+#: .\templates\asset\asset_link.html:272
+#: .\templates\asset\asset_report.html:330
+#: .\templates\asset\asset_report.html:438
+#: .\templates\authentication\commission_members_list.html:50
+msgid "Department"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:139
+#: .\templates\asset\asset_edit.html:104 .\templates\asset\asset_form.html:104
+#: .\templates\asset\asset_report.html:441
+msgid "Custodian"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:154
+msgid "Additional Information"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:171
+#: .\templates\asset\depreciation_detail.html:11
+msgid "Depreciation Details"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:176
+#: .\templates\asset\depreciation_calculated.html:52
+#: .\templates\asset\depreciation_detail.html:56
+msgid "Year"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:177
+msgid "Amount"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:186
+msgid "No depreciation calculated yet."
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:196
+msgid "Documents"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:213
+#: .\templates\asset\asset_list.html:636
+#: .\templates\authentication\department_list.html:62
+#: .\templates\authentication\department_list.html:79
+msgid "QR Code"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:217
+msgid "Scan to view asset details"
+msgstr ""
+
+#: .\templates\asset\asset_detail.html:226
+#: .\templates\asset\asset_full_details.html:273
+#: .\templates\asset\asset_link.html:280
+msgid "Asset Images"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:13
+msgid "Update Asset"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:14
+msgid "Update asset information to your inventory"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:22 .\templates\asset\asset_form.html:22
+msgid "Check Below:"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:49 .\templates\asset\asset_form.html:49
+#: .\templates\asset\create_custom_depreciation.html:24
+#: .\templates\asset\create_depreciation.html:24
+#: .\templates\asset\edit_custom_depreciation.html:24
+msgid "Office"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:89 .\templates\asset\asset_form.html:89
+msgid "Warranty Information"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:97 .\templates\asset\asset_form.html:97
+msgid "Images"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:108 .\templates\asset\asset_form.html:108
+msgid "Bill File"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:111 .\templates\asset\asset_form.html:111
+msgid ""
+"Accepted formats: Images (JPG, PNG, GIF), Documents (PDF, DOC, DOCX, XLS, "
+"XLSX)"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:132 .\templates\asset\asset_form.html:132
+msgid "Add Custom Field"
+msgstr ""
+
+#: .\templates\asset\asset_edit.html:136 .\templates\asset\asset_form.html:136
+msgid "Save Asset"
+msgstr ""
+
+#: .\templates\asset\asset_form.html:14
+msgid "Add new asset information to your inventory"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:210
+#: .\templates\asset\asset_link.html:217
+msgid "Asset Register"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:218
+#: .\templates\asset\asset_link.html:225
+msgid "Asset Category"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:291
+msgid "Verify Asset"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:299
+#: .\templates\authentication\dashboard.html:83
+#: .\templates\authentication\dashboard.html:179
+msgid "Logout"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:302
+#: .\templates\asset\asset_link.html:302
+msgid "Print"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:305
+#: .\templates\asset\asset_link.html:305
+msgid "Share"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:313
+#: .\templates\asset\asset_link.html:313
+msgid "Powered by"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:313
+#: .\templates\asset\asset_link.html:313
+msgid "Asset Trace"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:316
+#: .\templates\asset\asset_link.html:316
+msgid "Gaude AI Solutions"
+msgstr ""
+
+#: .\templates\asset\asset_full_details.html:316
+#: .\templates\asset\asset_link.html:316
+msgid "All rights reserved."
+msgstr ""
+
+#: .\templates\asset\asset_link.html:292
+msgid "For complete details and verification options"
+msgstr ""
+
+#: .\templates\asset\asset_link.html:294
+msgid "Login"
+msgstr ""
+
+#: .\templates\asset\asset_link.html:296
+msgid "Asset ID not available."
+msgstr ""
+
+#: .\templates\asset\asset_list.html:442
+#: .\templates\authentication\dashboard.html:142
+msgid "Asset Management"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:443
+msgid "Manage and monitor all your Assets"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:448
+msgid "Add New Asset"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:452
+msgid "Add New Asset Categories"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:467
+msgid "Add New Asset Category"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:476
+msgid "Please enter a category name."
+msgstr ""
+
+#: .\templates\asset\asset_list.html:482
+msgid "Save"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:495
+msgid "Asset Categories"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:526
+#: .\templates\asset\asset_report.html:425
+msgid "Assets List"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:557 .\templates\asset\asset_list.html:578
+#: .\templates\asset\asset_report.html:321
+msgid "All Branches"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:605
+msgid "Upload Excel"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:627
+#: .\templates\authentication\super_dashboard.html:100
+msgid "Category"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:639
+msgid "Sold Status"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:642
+#: .\templates\asset\asset_movement_list.html:83
+#: .\templates\asset\depreciation_detail.html:76
+#: .\templates\asset\sold_asset_list.html:45
+#: .\templates\authentication\chairman_list.html:48
+#: .\templates\authentication\commission_members_list.html:53
+#: .\templates\authentication\department_detail.html:49
+#: .\templates\authentication\department_list.html:65
+#: .\templates\authentication\list_of_branches.html:54
+msgid "Actions"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:695
+msgid "No Assets found"
+msgstr ""
+
+#: .\templates\asset\asset_list.html:696
+msgid "Click \"Add Asset\" to create your first asset"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:11
+msgid "Asset Movement"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:12
+msgid "Manage asset movements between branches"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:28
+#: .\templates\asset\asset_movement_list.html:77
+msgid "Asset"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:32
+#: .\templates\asset\asset_movement_list.html:78
+#: .\templates\asset\asset_report.html:442
+#: .\templates\authentication\department_detail.html:46
+#: .\templates\authentication\super_dashboard.html:103
+msgid "Status"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:38
+#: .\templates\asset\asset_movement_list.html:79
+msgid "From Branch"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:42
+#: .\templates\asset\asset_movement_list.html:80
+msgid "To Branch"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:48
+#: .\templates\asset\asset_movement_list.html:81
+msgid "Movement Date"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:52
+#: .\templates\asset\asset_movement_list.html:82
+msgid "Return Date"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:58
+msgid "Move Asset"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:72
+msgid "Assets Movement List"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:96
+msgid "Edit Movement"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:108
+msgid "No Asset Movements Recorded"
+msgstr ""
+
+#: .\templates\asset\asset_movement_list.html:109
+msgid "Start managing your asset movements by filling the form above."
+msgstr ""
+
+#: .\templates\asset\asset_report.html:148
+msgid "Asset Analytics & Reports"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:151
+#: .\templates\asset\asset_report.html:162
+msgid "Export Report"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:169
+msgid "Export Format"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:174
+msgid "Excel"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:180
+msgid "PDF"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:189
+msgid "Report Type"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:194
+msgid "Generic Report"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:200
+msgid "Report with Commission Members"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:206
+msgid "Report with Chairman"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:212
+msgid "Report with Chairman and Commission Members"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:225
+msgid "Select Fields to Export"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:239
+msgid "Standard Fields"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:251
+msgid "Custom Fields"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:263
+msgid "Export Options"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:267
+msgid "Include Column Headers"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:278
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:281
+msgid "Export"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:292
+msgid "Filter "
+msgstr ""
+
+#: .\templates\asset\asset_report.html:298
+msgid "Date Range"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:303
+msgid "Price Range"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:310
+msgid "All Types"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:332
+msgid "All Departments"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:343
+msgid "Apply"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:346
+msgid "Reset"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:362
+#: .\templates\authentication\super_dashboard.html:30
+msgid "Total Assets"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:378
+msgid "Total Value"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:394
+msgid "Total Depreciation"
+msgstr ""
+
+#: .\templates\asset\asset_report.html:409
+msgid "Active Assets"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:14
+msgid "Department associated in this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:29
+msgid "No departments available in this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:48
+msgid "Current assets located in this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:71
+msgid "No items available in this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:86
+msgid "Moved Assets"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:87
+msgid "Assets that have been moved from this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:110
+msgid "No items moved"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:125
+msgid "Received Assets"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:126
+msgid "Assets that have been received at this branch"
+msgstr ""
+
+#: .\templates\asset\assets_by_branch.html:149
+msgid "No items received"
+msgstr ""
+
+#: .\templates\asset\create_custom_depreciation.html:13
+#: .\templates\asset\edit_custom_depreciation.html:13
+msgid "Custom Depreciation"
+msgstr ""
+
+#: .\templates\asset\create_custom_depreciation.html:14
+#: .\templates\asset\edit_custom_depreciation.html:14
+msgid "Set custom depreciation rates for"
+msgstr ""
+
+#: .\templates\asset\create_custom_depreciation.html:57
+#: .\templates\asset\edit_custom_depreciation.html:57
+msgid "Useful Life (years)"
+msgstr ""
+
+#: .\templates\asset\create_custom_depreciation.html:69
+#: .\templates\asset\edit_custom_depreciation.html:69
+msgid "Add Year-Percentage Pair"
+msgstr ""
+
+#: .\templates\asset\create_custom_depreciation.html:73
+#: .\templates\asset\create_depreciation.html:13
+#: .\templates\asset\create_depreciation.html:85
+#: .\templates\asset\edit_custom_depreciation.html:73
+msgid "Create Depreciation"
+msgstr ""
+
+#: .\templates\asset\create_depreciation.html:14
+#: .\templates\asset\edit_standard_depreciation.html:14
+msgid "Set up depreciation for"
+msgstr ""
+
+#: .\templates\asset\create_depreciation.html:53
+#: .\templates\asset\depreciation_detail.html:32
+#: .\templates\asset\edit_standard_depreciation.html:27
+msgid "Useful Life"
+msgstr ""
+
+#: .\templates\asset\create_depreciation.html:61
+#: .\templates\asset\depreciation_detail.html:41
+#: .\templates\asset\edit_standard_depreciation.html:35
+msgid "Salvage Value"
+msgstr ""
+
+#: .\templates\asset\create_depreciation.html:69
+#: .\templates\asset\depreciation_detail.html:36
+#: .\templates\asset\edit_standard_depreciation.html:43
+msgid "Depreciation Method"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:7
+msgid "Add Depreciation"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:14
+msgid "Asset:"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:19
+msgid "Purchase Value:"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:24
+msgid "Useful Life (years):"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:29
+msgid "Depreciation Method:"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:34
+msgid "Salvage Value:"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:39
+msgid "Custom Percentages"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:41
+msgid "Add Percentage"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:44
+msgid "Calculate Depreciation"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:48
+#: .\templates\asset\depreciation_detail.html:52
+msgid "Depreciation Schedule"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:53
+#: .\templates\asset\depreciation_detail.html:57
+msgid "Depreciation Amount"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:54
+#: .\templates\asset\depreciation_detail.html:58
+msgid "Accumulated Depreciation"
+msgstr ""
+
+#: .\templates\asset\depreciation_calculated.html:55
+#: .\templates\asset\depreciation_detail.html:59
+msgid "Book Value"
+msgstr ""
+
+#: .\templates\asset\depreciation_detail.html:12
+msgid "Complete depreciation details for"
+msgstr ""
+
+#: .\templates\asset\depreciation_detail.html:24
+msgid "Basic Depreciation Information"
+msgstr ""
+
+#: .\templates\asset\depreciation_detail.html:33
+msgid "years"
+msgstr ""
+
+#: .\templates\asset\depreciation_detail.html:81
+msgid "Delete Depreciation"
+msgstr ""
+
+#: .\templates\asset\edit_assettype.html:12
+msgid "Edit Asset Type"
+msgstr ""
+
+#: .\templates\asset\edit_assettype.html:22
+msgid "Errors:"
+msgstr ""
+
+#: .\templates\asset\edit_assettype.html:36
+msgid "Save Asset Type"
+msgstr ""
+
+#: .\templates\asset\edit_standard_depreciation.html:13
+#: .\templates\asset\edit_standard_depreciation.html:59
+msgid "Update Depreciation"
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:15
+msgid "Sold Assets List"
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:16
+msgid "View and manage all sold assets"
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:20
+msgid "Search for assets..."
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:44
+msgid "Sold Date"
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:71
+msgid "No Sold Assets Found"
+msgstr ""
+
+#: .\templates\asset\sold_asset_list.html:72
+msgid "No assets have been sold yet."
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:14
+msgid "Upload your asset files and documentation"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:16
+msgid "Download Template"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:37
+#: .\templates\asset\upload_assets.html:90
+msgid "Upload Files"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:49
+msgid "Excel File"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:50
+msgid "Upload your asset data spreadsheet"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:64
+msgid "Images ZIP"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:65
+msgid "Compress all asset images in a ZIP file"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:79
+msgid "Bills ZIP"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:80
+msgid "Compress all bill documents in a ZIP file"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:101
+msgid "Upload Guidelines"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:108
+msgid "Excel File Requirements"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:150
+msgid "Optional Fields:"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:183
+msgid "File Naming Convention"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:188
+msgid "Images:"
+msgstr ""
+
+#: .\templates\asset\upload_assets.html:196
+msgid "Bills:"
+msgstr ""
+
+#: .\templates\authentication\branches.html:13
+msgid "Branch Office Creation"
+msgstr ""
+
+#: .\templates\authentication\branches.html:14
+msgid "Fill in the details to create a new branch office"
+msgstr ""
+
+#: .\templates\authentication\branches.html:34
+#: .\templates\authentication\edit_branch.html:23
+#: .\templates\authentication\headoffice.html:16
+#: .\templates\authentication\list_of_branches.html:39
+#: .\templates\authentication\list_of_office.html:24
+msgid "Prefix"
+msgstr ""
+
+#: .\templates\authentication\branches.html:50
+#: .\templates\authentication\edit_branch.html:39
+msgid "Branch Name"
+msgstr ""
+
+#: .\templates\authentication\branches.html:58
+#: .\templates\authentication\chairman_form.html:39
+#: .\templates\authentication\commission_member_form.html:47
+#: .\templates\authentication\edit_branch.html:47
+#: .\templates\authentication\headoffice.html:31
+#: .\templates\authentication\list_of_branches.html:51
+#: .\templates\authentication\list_of_office.html:28
+msgid "Contact Number"
+msgstr ""
+
+#: .\templates\authentication\branches.html:62
+msgid ""
+"Please enter a valid international phone number with country code. Format: "
+"+[country code][number] (e.g., +911234567890)"
+msgstr ""
+
+#: .\templates\authentication\branches.html:67
+#: .\templates\authentication\edit_branch.html:55
+#: .\templates\authentication\headoffice.html:37
+#: .\templates\authentication\list_of_branches.html:48
+#: .\templates\authentication\list_of_office.html:27
+msgid "Address"
+msgstr ""
+
+#: .\templates\authentication\branches.html:75
+#: .\templates\authentication\edit_branch.html:63
+msgid "Company Logo"
+msgstr ""
+
+#: .\templates\authentication\branches.html:80
+#: .\templates\authentication\edit_branch.html:68
+msgid "Click to upload or drag and drop"
+msgstr ""
+
+#: .\templates\authentication\branches.html:81
+#: .\templates\authentication\edit_branch.html:69
+msgid "SVG, PNG, JPG (max. 800x400px)"
+msgstr ""
+
+#: .\templates\authentication\branches.html:89
+#: .\templates\authentication\edit_branch.html:77
+msgid "Create Branch"
+msgstr ""
+
+#: .\templates\authentication\chairman_form.html:13
+#: .\templates\authentication\commission_member_form.html:13
+msgid "Commission Members"
+msgstr ""
+
+#: .\templates\authentication\chairman_form.html:14
+#: .\templates\authentication\commission_member_form.html:14
+msgid "Fill in the details to create Commission Members"
+msgstr ""
+
+#: .\templates\authentication\chairman_form.html:31
+#: .\templates\authentication\chairman_list.html:41
+#: .\templates\authentication\commission_member_form.html:39
+#: .\templates\authentication\commission_members_list.html:44
+msgid "Email"
+msgstr ""
+
+#: .\templates\authentication\chairman_form.html:49
+#: .\templates\authentication\commission_member_form.html:67
+msgid "Create"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:11
+msgid "Chairmen"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:16
+msgid "Add Chairman"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:44
+#: .\templates\authentication\commission_members_list.html:47
+msgid "Phone Number"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:62
+#: .\templates\authentication\commission_members_list.html:71
+msgid "Edit Asset"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:65
+#: .\templates\authentication\commission_members_list.html:74
+msgid "Delete Asset"
+msgstr ""
+
+#: .\templates\authentication\chairman_list.html:77
+msgid "No Chairmen Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\commission_member_form.html:31
+#: .\templates\authentication\commission_members_list.html:41
+msgid "Designation"
+msgstr ""
+
+#: .\templates\authentication\commission_member_form.html:55
+#: .\templates\authentication\dashboard.html:113
+msgid "Departments"
+msgstr ""
+
+#: .\templates\authentication\commission_members_list.html:11
+msgid "Commission Members Management"
+msgstr ""
+
+#: .\templates\authentication\commission_members_list.html:12
+msgid "Manage and monitor Commission Members"
+msgstr ""
+
+#: .\templates\authentication\commission_members_list.html:17
+msgid "Add Commission Members"
+msgstr ""
+
+#: .\templates\authentication\commission_members_list.html:86
+msgid "No Commission Members Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\commission_members_list.html:87
+msgid "Click \"Add Commission Members\" to create Commission Members"
+msgstr ""
+
+#: .\templates\authentication\create_department.html:12
+#: .\templates\authentication\create_department.html:44
+#: .\templates\authentication\edit_department.html:13
+#: .\templates\authentication\edit_department.html:45
+msgid "Create Department"
+msgstr ""
+
+#: .\templates\authentication\create_department.html:13
+#: .\templates\authentication\edit_department.html:14
+msgid "Add a new department to your organization"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:10
+msgid "Master Dashboard"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:12
+msgid "Super Admin Dashboard"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:14
+msgid "Admin Dashboard"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:16
+#: .\templates\authentication\dashboard.html:100
+msgid "Dashboard"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:106
+msgid "Branches"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:120
+msgid "Board Members"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:127
+msgid "Chairman"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:133
+msgid "Members"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:148
+msgid "Asset Shifting"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:156
+msgid "Asset Sold"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:164
+msgid "Depreciation"
+msgstr ""
+
+#: .\templates\authentication\dashboard.html:171
+msgid "Reports"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:11
+msgid "Assets in"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:12
+msgid "Manage and monitor all assets within this department"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:30
+msgid "Asset Image"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:40
+msgid "Type"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:67
+msgid "Active"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:72
+msgid "View Asset"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:87
+msgid "No Assets Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\department_detail.html:88
+msgid "Click 'Add Asset' to create your first asset"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:15
+msgid "Department Management"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:16
+msgid "Manage and monitor all your departments"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:24
+msgid "Search departments..."
+msgstr ""
+
+#: .\templates\authentication\department_list.html:33
+msgid "Add Department"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:56
+msgid "Department Name"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:84
+msgid "View Department"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:87
+msgid "Edit Department"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:90
+msgid "Delete Department"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:103
+msgid "No Departments Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:104
+msgid "Click \"Add Department\" to create your first department"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:118
+msgid "First"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:124
+msgid "Previous"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:132
+msgid "Page"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:139
+msgid "Next"
+msgstr ""
+
+#: .\templates\authentication\department_list.html:145
+msgid "Last"
+msgstr ""
+
+#: .\templates\authentication\edit_branch.html:13
+msgid "Branch Office Update"
+msgstr ""
+
+#: .\templates\authentication\edit_branch.html:14
+msgid "Fill in the details to Update branch office"
+msgstr ""
+
+#: .\templates\authentication\edit_headoffice.html:9
+msgid "Edit Head Office"
+msgstr ""
+
+#: .\templates\authentication\headoffice.html:9
+msgid "Head Office Creation"
+msgstr ""
+
+#: .\templates\authentication\headoffice.html:20
+#: .\templates\authentication\list_of_office.html:25
+msgid "Client"
+msgstr ""
+
+#: .\templates\authentication\headoffice.html:44
+msgid "Logo"
+msgstr ""
+
+#: .\templates\authentication\headoffice.html:50
+msgid "Designate as Branch"
+msgstr ""
+
+#: .\templates\authentication\headoffice.html:53
+msgid "Create Head Office"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:11
+msgid "Branch Management"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:12
+msgid "Manage and monitor all your branches"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:17
+msgid "Create Branch Account"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:21
+msgid "Add New Branch"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:87
+msgid "Edit Branch"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:92
+msgid "Delete Branch"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:96
+msgid "View Assets"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:109
+msgid "No Branches Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\list_of_branches.html:110
+msgid "Click 'Add New Branch' to create your first branch"
+msgstr ""
+
+#: .\templates\authentication\list_of_office.html:9
+msgid "Head Office List"
+msgstr ""
+
+#: .\templates\authentication\list_of_office.html:12
+msgid "Create Office Account"
+msgstr ""
+
+#: .\templates\authentication\list_of_office.html:15
+msgid "Add New Head Office"
+msgstr ""
+
+#: .\templates\authentication\list_of_office.html:51
+msgid "No Head Office Registered Yet"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:12
+msgid "Welcome to"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:13
+msgid "Asset Management Overview"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:45
+msgid "Sold Assets"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:60
+msgid "Total Branches"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:75
+msgid "Shifted Assets"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:90
+msgid "New Arrivals"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:92
+msgid "Last 7 days"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:101
+msgid "Added Date"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:125
+msgid "New"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:133
+msgid "No new arrivals in the past 7 days"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:158
+msgid "Assets By Category"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:173
+msgid "Assets by Status"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:190
+msgid "Recent Asset Movements"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:222
+msgid "Assets by Departments"
+msgstr ""
+
+#: .\templates\authentication\super_dashboard.html:234
+msgid "No Departments Found"
+msgstr ""

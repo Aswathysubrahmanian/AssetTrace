@@ -1,0 +1,297 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="custom-card">
+                <div class="card-decoration"></div>
+                <div class="card-header-custom">
+                    <div class="header-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>{% trans "Branch Office Update" %}</h3>
+                    <p class="text-muted">{% trans "Fill in the details to Update branch office" %}</p>
+                </div>
+                
+                <div class="card-body-custom">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-fields">
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.prefix.id_for_label }}">
+                                    {% trans "Prefix" %}
+                                    <span class="required-star">*</span>
+                                </label>
+                                {{ form.prefix }}
+                            </div>
+                            
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.head_office.id_for_label }}">
+                                    {% trans "Head Office" %}
+                                    <span class="required-star">*</span>
+                                </label>
+                                {{ form.head_office }}
+                            </div>
+
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.branch_name.id_for_label }}">
+                                    {% trans "Branch Name" %}
+                                    <span class="required-star">*</span>
+                                </label>
+                                {{ form.branch_name }}
+                            </div>
+
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.branch_contact_number.id_for_label }}">
+                                    {% trans "Contact Number" %}
+                                    <span class="required-star">*</span>
+                                </label>
+                                {{ form.branch_contact_number }}
+                            </div>
+
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.branch_address.id_for_label }}">
+                                    {% trans "Address" %}
+                                    <span class="required-star">*</span>
+                                </label>
+                                {{ form.branch_address }}
+                            </div>
+
+                            <div class="form-field-wrapper">
+                                <label class="field-label" for="{{ form.logo_image.id_for_label }}">
+                                    {% trans "Company Logo" %}
+                                </label>
+                                <div class="upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    {{ form.logo_image }}
+                                    <span class="upload-text">{% trans "Click to upload or drag and drop" %}</span>
+                                    <span class="upload-hint">{% trans "SVG, PNG, JPG (max. 800x400px)" %}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-button">
+                                <i class="fas fa-plus-circle"></i>
+                                {% trans "Create Branch" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .card-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    }
+
+    .card-header-custom {
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .header-icon i {
+        font-size: 24px;
+        color: #4776E6;
+    }
+
+    .card-header-custom h3 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .card-header-custom p {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+
+    .card-body-custom {
+        padding: 2rem;
+    }
+
+    .form-fields {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .form-field-wrapper {
+        position: relative;
+    }
+
+    .field-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #2c3e50;
+        font-size: 14px;
+    }
+
+    .required-star {
+        color: #e74c3c;
+        margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #4776E6;
+        outline: none;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(71, 118, 230, 0.1);
+    }
+
+    .help-text {
+        display: block;
+        margin-top: 6px;
+        color: #6c757d;
+        font-size: 12px;
+    }
+
+    .error-feedback {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .submit-button {
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(71, 118, 230, 0.2);
+    }
+
+    .submit-button i {
+        font-size: 16px;
+    }
+
+    .upload-area {
+        border: 2px dashed #e9ecef;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 8px;
+        background: #f8f9fa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .upload-area:hover {
+        border-color: #4776E6;
+        background: #f8f9fa;
+    }
+
+    .upload-area i {
+        font-size: 2rem;
+        color: #4776E6;
+        margin-bottom: 1rem;
+    }
+
+    .upload-text {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .upload-hint {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .custom-card {
+            margin: 20px;
+        }
+
+        .card-header-custom,
+        .card-body-custom {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Custom animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .custom-card {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}

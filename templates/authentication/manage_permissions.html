@@ -1,0 +1,92 @@
+{% extends 'authentication/dashboard.html' %}
+
+{% block body %}
+
+<div class="container-fluid mt-4 ">
+    <div class="card">
+    <div class="card-header">
+       <h4>Manage Permissions</h4> 
+      </div>
+  <form method="post" class="mt-5">
+      {% csrf_token %}
+      <div class="form-row">
+          <div class="form-group col-md-4">
+              {{ form.role.label_tag }}
+              {{ form.role }}
+          </div>
+          <div class="form-group col-md-4">
+              {{ form.permission.label_tag }}
+              {{ form.permission }}
+          </div>
+          <div class="form-group  ">
+              {{ form.enabled.label_tag }}
+              {{ form.enabled }}
+          </div>
+         
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+  
+  <div class="card">
+  <div class="card-header ">
+   <h4>Existing Permissions</h4> 
+  </div>
+  <table class="table ">
+      <tr>
+          <th>Role</th>
+          <th>Permission</th>
+          <th>Enabled</th>
+          <th>Actions</th>
+      </tr>
+      {% for permission in permissions %}
+      <tr>
+          <td>{{ permission.get_role_display }}</td>
+          <td>{{ permission.get_permission_display }}</td>
+          <td>
+              <label class="switch">
+                <input type="checkbox" {% if permission.enabled %}checked{% endif %}
+                onchange="togglePermission({{ permission.id }})">
+                  <span class="slider round"></span>
+              </label>
+          </td>
+          <td>
+       
+              <form method="post" action="{% url 'delete_permission' permission.pk %}" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-danger">
+                    <?xml version="1.0" ?><svg height="24" version="1.1" viewBox="0 0 14 18" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#ffffff" id="Core" transform="translate(-299.000000, -129.000000)"><g id="delete" transform="translate(299.000000, 129.000000)"><path d="M1,16 C1,17.1 1.9,18 3,18 L11,18 C12.1,18 13,17.1 13,16 L13,4 L1,4 L1,16 L1,16 Z M14,1 L10.5,1 L9.5,0 L4.5,0 L3.5,1 L0,1 L0,3 L14,3 L14,1 L14,1 Z" id="Shape"/></g></g></g></svg>  
+
+                  </button>
+              </form>
+          </td>
+      </tr>
+      {% endfor %}
+  </table>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButtons = document.querySelectorAll('.toggle-permission');
+        toggleButtons.forEach(button => {
+            button.addEventListener('change', function() {
+                const permissionId = this.dataset.permissionId;
+                const enabled = this.checked;
+                fetch(`/update-permission/${permissionId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ enabled: enabled })
+                }).then(response => response.json())
+                  .then(data => {
+                      if (!data.success) {
+                          alert('Failed to update permission');
+                      }
+                  });
+            });
+        });
+    });
+</script>
+{% endblock %}

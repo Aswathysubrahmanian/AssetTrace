@@ -1,0 +1,77 @@
+
+
+{% extends 'authentication/dashboard.html' %}
+{% block body %}
+    <div class="container-fluid " >
+        <div class="row justify-content-center">
+
+            <div class="col-md-12">
+                
+                <div class="card w-100">
+                    
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Client List</span>
+                             <a href="{% url 'add_client' %}" class="btn btn-primary btn-sm"><b><i class="fa-solid fa-square-plus p-1"></i>Add Client</b></a>
+                            
+                        </div>
+                       
+                       
+                  
+                    <div class="card-body">
+                        <table class="table   " >
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Prefix</th>
+                                    <th>Logo</th>
+                                    <th>Client Name</th>
+                                   
+                                    <th>Client Address</th>
+                                    <th>Client Contact</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for client in list_of_clients %}
+                                <tr>
+                                    <td>{{ client.prefix }}</td>
+                                    <td>{% if client.logo_image %}
+                                        <img src="{{ client.logo_image.url }}" alt="{{ client.client_name }}" style="max-width: 100px;">
+                                    {% endif %}
+                                </td>
+                                    <td>{{ client.client_name }}</td>
+                                   
+                                    <td>{{ client.client_address }}</td>
+                                    <td>{{ client.client_contact }}</td>
+                                    <td>
+                                        <a href="{% url 'edit_client' client.id %}" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></a>
+                                    <form action="{% url 'delete_client' client.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(this)"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    </td>
+                                                                            
+
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                   <td colspan="6">No Organization Registered Yet</td> 
+                                </tr>
+                                
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function confirmDelete(button) {
+            if (confirm('Are you sure you want to delete this Client?')) {
+                button.parentElement.submit();
+            }
+        }
+    </script>
+{% endblock %}

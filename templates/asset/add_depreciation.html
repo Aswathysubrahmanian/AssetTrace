@@ -1,0 +1,66 @@
+
+
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="card">
+    <div class="card-header">
+      Create Depreciation for {{ asset.asset_name }}
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <form method="post" id="depreciation-form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div id="custom-percentages-container" style="display: none;">
+              <h3>Custom Percentages</h3>
+              <div id="custom-percentages-fields">
+                  <!-- Custom fields will be added here -->
+              </div>
+              <button type="button" id="add-percentage">Add Percentage</button>
+          </div>
+          <button type="submit">Submit</button>
+      </form>
+        
+      </p>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        function toggleCustomPercentages() {
+            if ($('#id_depreciation_method').val() === 'other') {
+                $('#custom-percentages-container').show();
+            } else {
+                $('#custom-percentages-container').hide();
+                $('#custom-percentages-fields').empty();
+            }
+        }
+
+        $('#id_depreciation_method').change(toggleCustomPercentages);
+        toggleCustomPercentages();
+
+        $('#add-percentage').click(function() {
+            const fieldCount = $('#custom-percentages-fields').children().length / 2;
+            $('#custom-percentages-fields').append(`
+                <div>
+                    <label for="year_${fieldCount}">Year</label>
+                    <input type="number" name="custom_percentages_year_${fieldCount}" id="year_${fieldCount}" required>
+                    <label for="percentage_${fieldCount}">Percentage</label>
+                    <input type="number" name="custom_percentages_percentage_${fieldCount}" id="percentage_${fieldCount}" required>
+                </div>
+            `);
+        });
+
+        $('#depreciation-form').submit(function() {
+            const customPercentages = [];
+            $('#custom-percentages-fields > div').each(function() {
+                const year = $(this).find('input[name^="custom_percentages_year"]').val();
+                const percentage = $(this).find('input[name^="custom_percentages_percentage"]').val();
+                customPercentages.push({ year, percentage });
+            });
+            $('#id_custom_percentages').val(JSON.stringify(customPercentages));
+        });
+    });
+</script>
+
+{% endblock %}

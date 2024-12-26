@@ -1,0 +1,43 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<style>
+    .input-group .form-control {
+        margin-bottom: 15px;
+    }
+</style>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            {% trans "Edit Asset Type" %}
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-12">
+                        {{ asset_type_form.as_p }}
+                        {% if asset_type_form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{% trans "Errors:" %}</strong>
+                                <ul>
+                                    {% for field in asset_type_form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <button type="submit" name="asset_type_submit" class="btn btn-primary">{% trans "Save Asset Type" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

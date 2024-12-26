@@ -1,0 +1,275 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+
+<div class="container-fluid mt-5">
+
+    <div class="custom-card mb-4">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-box"></i>
+            </div>
+            <h3>{{ branch.branch_name }}</h3>
+            <p class="text-muted"> {% trans "Department associated in this branch" %}</p>
+        </div>
+        <div class="card-body-custom">
+            <div class="info-sections">
+                <div class="info-section">
+                    <div class="image-gallery">
+                        {% for asset in departments %}
+                        <div class="gallery-item">
+                            
+                            <div class="item-details">
+                              <a href="{% url 'department_detail' asset.id %}">  <h5>{{ asset.dpt_name }}</h5> </a>
+                                
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="no-data">{% trans "No departments available in this branch" %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    {% if branch %}
+    
+    <!-- Card for Assets in the current branch -->
+    <div class="custom-card mb-4">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-box"></i>
+            </div>
+           
+            <p class="text-muted">{% trans "Current assets located in this branch" %}</p>
+        </div>
+        <div class="card-body-custom">
+            <div class="info-sections">
+                <div class="info-section">
+                    <div class="image-gallery">
+                        {% for asset in assets %}
+                        <div class="gallery-item">
+                            {% if asset.images.first %}
+                            <a href="{% url 'asset_detail' asset.id %}">
+                                <img src="{{ asset.images.first.image.url }}" alt="{{ asset.asset_name }}">
+                            </a>
+                            {% endif %}
+                            <div class="item-details">
+                                <h5>{{ asset.asset_name }}</h5>
+                                <p>
+                                    <strong>Type:</strong> {{ asset.asset_type.name }}<br>
+                                    <strong>Branch:</strong> {{ asset.branch }}<br>
+                                    <strong>Office:</strong> {{ asset.office }}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="no-data">{% trans "No items available in this branch" %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card for Moved Assets from the current branch -->
+    <div class="custom-card mb-4">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h3>{% trans "Moved Assets" %} </h3>
+            <p class="text-muted">{% trans "Assets that have been moved from this branch" %}</p>
+        </div>
+        <div class="card-body-custom">
+            <div class="info-sections">
+                <div class="info-section">
+                    <div class="image-gallery">
+                        {% for movement in moved_assets %}
+                        <div class="gallery-item">
+                            {% if movement.asset.images.first %}
+                            <a href="{% url 'asset_detail' movement.asset.id %}">
+                                <img src="{{ movement.asset.images.first.image.url }}" alt="{{ movement.asset.asset_name }}">
+                            </a>
+                            {% endif %}
+                            <div class="item-details">
+                                <h5>{{ movement.asset.asset_name }}</h5>
+                                <p>
+                                    <strong>Moved to:</strong> {{ movement.to_branch.branch_name }}<br>
+                                    <strong>Movement Date:</strong> {{ movement.movement_date }}<br>
+                                    <strong>Status:</strong> {{ movement.status }}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="no-data">{% trans "No items moved" %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card for Received Assets at the current branch -->
+    <div class="custom-card mb-4">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-inbox"></i>
+            </div>
+            <h3>{% trans "Received Assets" %} </h3>
+            <p class="text-muted">{% trans "Assets that have been received at this branch" %}</p>
+        </div>
+        <div class="card-body-custom">
+            <div class="info-sections">
+                <div class="info-section">
+                    <div class="image-gallery">
+                        {% for movement in received_assets %}
+                        <div class="gallery-item">
+                            {% if movement.asset.images.first %}
+                            <a href="{% url 'asset_detail' movement.asset.id %}">
+                                <img src="{{ movement.asset.images.first.image.url }}" alt="{{ movement.asset.asset_name }}">
+                            </a>
+                            {% endif %}
+                            <div class="item-details">
+                                <h5>{{ movement.asset.asset_name }}</h5>
+                                <p>
+                                    <strong>Moved from:</strong> {{ movement.from_branch.branch_name }}<br>
+                                    <strong>Movement Date:</strong> {{ movement.movement_date }}<br>
+                                    <strong>Status:</strong> {{ movement.status }}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="no-data">{% trans "No items received" %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+<style>
+    .custom-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .card-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    }
+
+    .card-header-custom {
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .header-icon i {
+        font-size: 24px;
+        color: #4776E6;
+    }
+
+    .card-body-custom {
+        padding: 2rem;
+    }
+
+    .info-sections {
+        padding: 1rem;
+    }
+
+    .info-section {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .item-details {
+        padding: 1rem;
+    }
+
+    .item-details h5 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .item-details p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .no-data {
+        text-align: center;
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .image-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<!-- Include Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}

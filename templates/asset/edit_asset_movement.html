@@ -1,0 +1,84 @@
+{% extends 'authentication/dashboard.html' %}
+
+{% load i18n %}
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Edit Asset Movement
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.asset.id_for_label }}">{{ form.asset.label }}</label>
+                            {{ form.asset }}
+                            {% for error in form.asset.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+                            {{ form.status }}
+                            {% for error in form.status.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.from_branch.id_for_label }}">{{ form.from_branch.label }}</label>
+                            {{ form.from_branch }}
+                            {% for error in form.from_branch.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.to_branch.id_for_label }}">{{ form.to_branch.label }}</label>
+                            {{ form.to_branch }}
+                            {% for error in form.to_branch.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.movement_date.id_for_label }}">{{ form.movement_date.label }}</label>
+                            {{ form.movement_date }}
+                            {% for error in form.movement_date.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="{{ form.return_date.id_for_label }}">{{ form.return_date.label }}</label>
+                            {{ form.return_date }}
+                            {% for error in form.return_date.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{% url 'asset_movement_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

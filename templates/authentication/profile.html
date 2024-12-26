@@ -1,0 +1,38 @@
+{% extends 'authentication/dashboard.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    User Profile
+                </div>
+                
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+
+                  
+                  <p><i class="fas fa-user"></i> <strong>Username:</strong> {{ user.username }}</p>
+            {% if user.is_superuser %}
+                <p><i class="fas fa-crown"></i> <strong>User Type:</strong> Master Admin</p>
+                <!-- Additional fields or information specific to super admin -->
+            {% elif user.is_superadmin %}
+                <p><i class="fas fa-star"></i> <strong>User Type:</strong> Super Admin</p>
+                <!-- Additional fields or information specific to master admin -->
+            {% elif user.is_admin %}
+                <p><i class="fas fa-user-tie"></i> <strong>User Type:</strong> Admin</p>
+                <!-- Additional fields or information specific to admin -->
+            {% else %}
+                <p><i class="fas fa-user"></i> <strong>User Type:</strong> Regular User</p>
+                <!-- Additional fields or information specific to regular user -->
+            {% endif %}
+        </li>
+                </ul>
+              </div>
+            
+           
+        </div>
+    </div>
+</div>
+{% endblock %}

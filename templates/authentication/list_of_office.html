@@ -1,0 +1,69 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>{% trans "Head Office List" %}</span>
+                    <div class="d-flex">
+                        <a href="{% url 'create_super_admin' %}" class="btn btn-success btn-sm me-2">
+                            <i class="fa-solid fa-user-plus"></i> {% trans "Create Office Account" %}
+                        </a>
+                        <a href="{% url 'add_head_office' %}" class="btn btn-primary btn-sm">
+                            <b><i class="fa-solid fa-square-plus p-1"></i>{% trans "Add New Head Office" %}</b>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>{% trans "Prefix" %}</th>
+                                <th>{% trans "Client" %}</th>
+                                <th>{% trans "Name" %}</th>
+                                <th>{% trans "Address" %}</th>
+                                <th>{% trans "Contact Number" %}</th>
+                                <th>{% trans "Action" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for head_office in head_offices %}
+                            <tr>
+                                <td>{{ head_office.prefix }}</td>
+                                <td>{{ head_office.client }}</td>
+                                <td>{{ head_office.name }}</td>
+                                <td>{{ head_office.address }}</td>
+                                <td>{{ head_office.contact_number }}</td>
+                                <td>
+                                    <a href="{% url 'edit_head_office' head_office.id %}" class="btn btn-warning btn-sm text-white">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'delete_head_office' head_office.id %}" class="btn btn-danger btn-sm" onclick="confirmDelete(this)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                               <td colspan="6">{% trans "No Head Office Registered Yet" %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        function confirmDelete(button) {
+            if (confirm('Are you sure you want to delete this head office?')) {
+                button.parentElement.submit();
+            }
+        }
+    </script>
+{% endblock %}

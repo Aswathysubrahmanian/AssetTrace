@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% if user_role == 'master' %}
+    {% trans "Master Dashboard" %}
+    {% elif user_role == 'super_admin' %}
+    {% trans "Super Admin Dashboard" %}
+    {% elif user_role == 'admin' %}
+    {% trans "Admin Dashboard" %}
+    {% else %}
+    {% trans "Dashboard" %}
+    {% endif %}
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap5.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/fc51e437b8.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    .language-selector {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .language-selector select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 8px 35px 8px 12px;
+        font-size: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background-color: white;
+        color: #333;
+        cursor: pointer;
+        min-width: 120px;
+        transition: all 0.2s ease;
+    }
+    
+    .language-selector::after {
+        content: '▼';
+        font-size: 10px;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+    }
+    
+    .language-selector select:hover {
+        border-color: #4a90e2;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .language-selector select:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74,144,226,0.2);
+    }
+    
+    /* Optional: Add flag icons */
+    .language-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .flag-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+    </style>
+  
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <img src="{% static 'imgs/logo.png' %}" alt="" style="height: 40px;">
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+   
+    <div class="flex-grow-1"></div>
+  
+    <div class="language-selector">
+      <select id="languageSelector" onchange="changeLanguage(this.value)">
+          <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+              <span class="language-option">
+                  🇺🇸 English
+              </span>
+          </option>
+          <option value="uz" {% if LANGUAGE_CODE == 'uz' %}selected{% endif %}>
+              <span class="language-option">
+                  🇺🇿 O'zbek
+              </span>
+          </option>
+      </select>
+  </div>
+  
+      <!-- User Profile -->
+      {% if user.is_authenticated %}
+      <div class="dropdown">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if user_role == 'master' %}
+            <img src="{% static 'images/gaude.jpg' %}" alt="User Icon" class="user-img" style="height: 30px; width: 150px;">
+          {% elif logo_url %}
+            <img src="{{ logo_url }}" alt="User Icon" class="user-img" style="height: 30px; width: 200px;">
+          {% elif branch.logo_image %}
+            <img src="{{ branch.logo_image.url }}" alt="User Icon" class="user-img" style="height: 30px; width: 150px;">
+          {% endif %}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{% url 'profile' %}">{{ user.username }}</a>
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'logout' %}" class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="ml-2">{% trans "Logout" %}</span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </nav>
+
+
+
+  <div class="wrapper">
+    <div class="sidebar">
+      <ul class="list-unstyled mt-4">
+        {% if user_role == 'super_admin' %}
+          <li class="mb-3">
+            <a href="{% url 'super_admin_dashboard' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-tachometer-alt"></i>
+              <span class="link ml-2" data-translate="dashboard">{% trans "Dashboard" %}</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'branch_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-building"></i>
+              <span class="link ml-2">{% trans "Branches" %}</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'department_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-university"></i>
+              <span class="link ml-2">{% trans "Departments" %}</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="#boardMembers" class="nav-link d-flex align-items-center" data-toggle="collapse" aria-expanded="false">
+              <i class="fas fa-users"></i>
+              <span class="link ml-2">{% trans "Board Members" %}</span>
+              <i class="fas fa-chevron-down ml-auto"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="boardMembers">
+              <li class="ml-4 mt-2">
+                <a href="{% url 'chairman_list' %}" class="nav-link d-flex align-items-center">
+                  <i class="fas fa-user-tie"></i>
+                  <span class="link ml-2">{% trans "Chairman" %}</span>
+                </a>
+              </li>
+              <li class="ml-4">
+                <a href="{% url 'commission_members_list' %}" class="nav-link d-flex align-items-center">
+                  <i class="fas fa-user-friends"></i>
+                  <span class="link ml-2">{% trans "Members" %}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'asset_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-boxes"></i>
+              <span class="link ml-2">{% trans "Asset Management" %}</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'asset_movement_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-exchange-alt"></i>
+              <span class="link ml-2">{% trans "Asset Shifting" %}</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'sold_asset_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="bi bi-tag-fill" ></i>
+
+              <span class="link ml-2">{% trans "Asset Sold" %}</span>
+            </a>
+          </li>
+
+
+          <li class="mb-3">
+            <a href="{% url 'asset_depreciation_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-calculator"></i>
+              <span class="link ml-2">{% trans "Depreciation" %}</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'reports' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-chart-line "></i>
+              <span class="link ml-2">{% trans "Reports" %}</span>
+            </a>
+          </li>
+
+
+          <li class="mb-3">
+            <a href="{% url 'logout' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="link ml-2">{% trans "Logout" %}</span>
+            </a>
+          </li>
+        {% elif user_role == 'master' %}
+          <li class="mb-3">
+            <a href="{% url 'master_admin_dashboard' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-tachometer-alt"></i>
+              <span class="link ml-2">Dashboard</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'list_client' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-briefcase"></i>
+              <span class="link ml-2">Organization</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'list_head_office' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-home"></i>
+              <span class="link ml-2">Head Office</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'branch_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-building"></i>
+              <span class="link ml-2">Branches</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'department_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-university"></i>
+              <span class="link ml-2">Departments</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'asset_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-boxes"></i>
+              <span class="link ml-2">Asset Management</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'asset_movement_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-exchange-alt"></i>
+              <span class="link ml-2">Asset Shifting</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'sold_asset_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="bi bi-tag-fill" ></i>
+
+              <span class="link ml-2">Asset Sold</span>
+            </a>
+          </li>
+
+
+          <li class="mb-3">
+            <a href="{% url 'asset_depreciation_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-calculator"></i>
+              <span class="link ml-2">Depreciation</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'manage_permissions' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-key"></i>
+              <span class="link ml-2">Permissions</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'logout' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="link ml-2">Logout</span>
+            </a>
+          </li>
+        {% elif user_role == 'admin' %}
+          <li class="mb-3">
+            <a href="{% url 'branch_dashboard' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-tachometer-alt"></i>
+              <span class="link ml-2">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="mb-3">
+            <a href="{% url 'department_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-university"></i>
+              <span class="link ml-2">Departments</span>
+            </a>
+          </li>
+
+          
+          <li class="mb-3">
+            <a href="{% url 'asset_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-boxes"></i>
+              <span class="link ml-2">Asset Management</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'asset_movement_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="fas fa-exchange-alt"></i>
+              <span class="link ml-2">Asset Shifting</span>
+            </a>
+          </li>
+
+
+          <li class="mb-3">
+            <a href="{% url 'sold_asset_list' %}" class="nav-link d-flex align-items-center ">
+              <i class="bi bi-tag-fill" ></i>
+
+              <span class="link ml-2">Asset Sold</span>
+            </a>
+          </li>
+
+
+          <li class="mb-3">
+            <a href="{% url 'asset_depreciation_list' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-calculator"></i>
+              <span class="link ml-2">Depreciation</span>
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="{% url 'logout' %}" class="nav-link d-flex align-items-center">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="link ml-2">Logout</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="content">
+      <div class="dashboard shadow">
+        {% block body %}
+        {% endblock %}
+      </div>
+    </div>
+    <div class="toast-container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
+            <div class="toast-header {% if message.tags == 'success' %}bg-success{% elif message.tags == 'error' %}bg-danger{% elif message.tags == 'warning' %}bg-warning{% elif message.tags == 'info' %}bg-info{% endif %} text-white">
+              <strong class="mr-auto">{{ message.tags|title }}</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="toast-body">
+              {{ message }}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  
+  <footer class="footer">
+    <p>&copy; 2024 Gaude Business Infrastructure and Solutions</p>
+  </footer>
+
+<script>
+  function changeLanguage(languageCode) {
+    let currentPath = window.location.pathname;
+    let newPath;
+    
+    // Remove existing language prefix if it exists
+    if (currentPath.startsWith('/uz/')) {
+        newPath = currentPath.replace('/uz/', '/');
+    } else if (currentPath.startsWith('/en/')) {
+        newPath = currentPath.replace('/en/', '/');
+    } else {
+        newPath = currentPath;
+    }
+    
+    // Add new language prefix
+    if (languageCode === 'uz') {
+        newPath = '/uz' + (newPath.startsWith('/') ? newPath : '/' + newPath);
+    } else {
+        // For English, we might want to keep it without prefix
+        newPath = newPath;
+    }
+    
+    // Redirect to new URL
+    window.location.href = window.location.protocol + '//' + window.location.host + newPath;
+}
+</script>
+  
+  </script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

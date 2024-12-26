@@ -1,0 +1,491 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+
+{% block body %}
+{% load static %}
+
+<div class="container-fluid p-4">
+    <!-- Modern Dashboard Header with Gradient -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="bg-gradient-primary-to-secondary p-4 rounded-4 text-white shadow-sm">
+                <h4 class="mb-1">{% trans 'Welcome to' %} {{ head_office.name }} </h4>
+                <p class="mb-0 opacity-75">{% trans "Asset Management Overview" %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Cards with Glass Morphism Effect -->
+    <div class="row g-4 mb-4">
+        <!-- Total Assets -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card glass-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="rounded-circle bg-primary bg-opacity-10 p-3">
+                            <i class="fas fa-cubes fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ total_assets }}</h3>
+                    <p class="text-muted mb-0">{% trans "Total Assets" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sold Assets -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card glass-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="rounded-circle bg-success bg-opacity-10 p-3">
+                            <i class="fas fa-shopping-cart fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ sold_assets }}</h3>
+                    <p class="text-muted mb-0">{% trans "Sold Assets" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Branches -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card glass-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="rounded-circle bg-warning bg-opacity-10 p-3">
+                            <i class="fas fa-code-branch fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ total_branches }}</h3>
+                    <p class="text-muted mb-0">{% trans "Total Branches" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shifted Assets -->
+        <div class="col-xl-3 col-sm-6">
+            <div class="card glass-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="rounded-circle bg-danger bg-opacity-10 p-3">
+                            <i class="fas fa-exchange-alt fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ shifted_assets }}</h3>
+                    <p class="text-muted mb-0">{% trans "Shifted Assets" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        
+        
+        <div class="col-md-12">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-box-open text-primary me-2"></i>{% trans "New Arrivals" %}
+                    </h5>
+                    <span class="badge bg-primary-subtle text-primary">{% trans "Last 7 days" %}</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0 ps-4">{% trans "Asset Name" %}</th>
+                                    <th class="border-0">{% trans "Category" %}</th>
+                                    <th class="border-0">{% trans "Added Date" %}</th>
+                                    <th class="border-0">so'm{% trans "Price" %}</th>
+                                    <th class="border-0 pe-4">{% trans "Status" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for asset in new_arrivals %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm bg-primary-subtle rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-box text-primary"></i>
+                                            </div>
+                                            <span class="fw-medium">{{ asset.asset_name }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info-subtle text-info">{{ asset.asset_type.name }}</span>
+                                    </td>
+                                    <td>{{ asset.purchase_date|date:"M d, Y" }}</td>
+                                    <td>
+                                        <span class="fw-medium">${{ asset.price }}</span>
+                                    </td>
+                                    <td class="pe-4">
+                                        <span class="badge bg-success">{% trans "New" %}</span>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">
+                                        <div class="empty-state">
+                                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">{% trans "No new arrivals in the past 7 days" %}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- New Arrivals Section -->
+ <!-- New Arrivals Section -->
+
+    <!-- Charts Section -->
+    <div class="row g-4 mb-4">
+        <!-- Asset Categories Chart -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie text-primary me-2"></i>
+                        {% trans "Assets By Category" %} 
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="assetCategoriesChart" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asset Status Chart -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar text-primary me-2"></i>
+                        {% trans "Assets by Status" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="assetStatusChart" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Asset Movements -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exchange-alt text-primary me-2"></i>
+                        {% trans "Recent Asset Movements" %}
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        {% for movement in recent_movements %}
+                        <div class="list-group-item py-3">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm bg-primary-subtle rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-exchange-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-light text-dark">From: {{ movement.from_branch }}</span>
+                                        <i class="fas fa-arrow-right text-muted"></i>
+                                        <span class="badge bg-light text-dark">To: {{ movement.to_branch }}</span>
+                                    </div>
+                                    <small class="text-muted">{{ movement.movement_date|date:"Y-m-d" }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% if dpt_asset %}
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-building text-primary me-2"></i>
+                            {% trans "Assets by Departments" %} 
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            {% for dept in dpt_asset %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ dept.department__dpt_name|default:"No Department" }}</span>
+                                <span class="badge bg-primary rounded-pill">{{ dept.count }}</span>
+                            </div>
+                            {% empty %}
+                            <div class="text-center py-3">
+                                <p class="text-muted mb-0">{% trans "No Departments Found" %}No departments found</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+/* Modern Styling */
+:root {
+    --primary-gradient: linear-gradient(45deg, #4e73df, #36b9cc);
+}
+
+.bg-gradient-primary-to-secondary {
+    background: var(--primary-gradient);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+}
+
+.card {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 50rem;
+    font-weight: 500;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.list-group-item {
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+.warranty-alert-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.warranty-summary {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.warranty-summary i {
+    color: #dc3545;
+    font-size: 1.2rem;
+}
+
+.warranty-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.warranty-item {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.warranty-item:hover {
+    transform: translateX(5px);
+}
+
+.warranty-item.urgent {
+    background: #fff5f5;
+    border-left: 4px solid #dc3545;
+}
+
+.warranty-item.warning {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+.warranty-item.notice {
+    background: #e8f4f8;
+    border-left: 4px solid #17a2b8;
+}
+
+.asset-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.asset-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.warranty-countdown {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.days-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.urgent .days-number {
+    color: #dc3545;
+}
+
+.warning .days-number {
+    color: #ffc107;
+}
+
+.notice .days-number {
+    color: #17a2b8;
+}
+
+.days-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.warranty-dates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .warranty-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .asset-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .warranty-dates {
+        align-items: flex-start;
+        margin-top: 0.5rem;
+    }
+}
+</style>
+
+<!-- Google Charts Script -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+        // Asset Categories Chart
+        var assetCategoriesData = google.visualization.arrayToDataTable([
+            ['Category', 'Count'],
+            {% for category in asset_categories %}
+            ['{{ category.asset_type__name }}', {{ category.count }}],
+            {% endfor %}
+        ]);
+
+        var categoriesOptions = {
+            pieHole: 0.4,
+            colors: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
+            chartArea: {width: '90%', height: '90%'},
+            legend: {position: 'right', textStyle: {fontSize: 12}},
+            pieSliceText: 'percentage',
+            animation: {
+                startup: true,
+                duration: 1000,
+                easing: 'out'
+            }
+        };
+
+        var categoriesChart = new google.visualization.PieChart(
+            document.getElementById('assetCategoriesChart')
+        );
+        categoriesChart.draw(assetCategoriesData, categoriesOptions);
+
+        // Asset Status Chart
+        var assetStatusData = google.visualization.arrayToDataTable([
+        ['Status', 'Count', { role: 'style' }],  // Added style role
+        {% for status in asset_status %}
+        ['{{ status.status }}', 
+         {{ status.count }}, 
+         '{{ status.status|lower }}' === 'available' ? '#056517' : 
+         '{{ status.status|lower }}' === 'sold' ? '#bf1029' : '#gray'
+        ],
+        {% endfor %}
+    ]);
+
+        var statusOptions = {
+            chartArea: {width: '75%', height: '80%'},
+            legend: {position: 'none'},
+            colors: ['#056517','#bf1029'],
+            animation: {
+                startup: true,
+                duration: 1000,
+                easing: 'out'
+            }
+        };
+
+        var statusChart = new google.visualization.BarChart(
+            document.getElementById('assetStatusChart')
+        );
+        statusChart.draw(assetStatusData, statusOptions);
+    }
+
+    // Redraw charts on window resize
+    window.addEventListener('resize', function() {
+        drawCharts();
+    });
+</script>
+{% endblock %}

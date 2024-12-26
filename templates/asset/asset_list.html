@@ -1,0 +1,975 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<!-- Bootstrap and Custom Styles -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+/* Main Layout and Colors */
+:root {
+    --primary-color: #4681f4;
+    --secondary-color: #5783db;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --light-bg: #f8f9fa;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    padding: 1rem 1.5rem;
+}
+
+/* Filter Form Container */
+.filter-form-container {
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.filter-form-container .form-group {
+    margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.filter-form-container label {
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.filter-form-container .form-control {
+    border-radius: var(--border-radius);
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+}
+
+/* Search Form */
+.search-form-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-form-container .form-control {
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+}
+
+/* Export Buttons */
+.export-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.export-buttons .btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.export-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.export-buttons i {
+    margin-right: 0.5rem;
+}
+
+/* Table Styles */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: var(--light-bg);
+    border-bottom: 2px solid #dee2e6;
+    color: #495057;
+    font-weight: 600;
+}
+
+.table td, .table th {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
+}
+
+.pagination .page-link {
+    border-radius: 4px;
+    margin: 0 0.2rem;
+    color: var(--primary-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Images and QR Codes */
+.table img {
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-form-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-form-container .form-group {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .search-form-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Status Indicators */
+.text-danger {
+    color: var(--danger-color) !important;
+    font-weight: 500;
+}
+
+.text-success {
+    color: var(--success-color) !important;
+    font-weight: 500;
+}
+
+/* Updated Pagination Styles */
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.pagination .page-item .page-link {
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.2rem;
+    color: #495057;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    min-width: 35px;
+    text-align: center;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+}
+
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+    padding: 0.5rem 0.75rem;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: var(--primary-color);
+}
+
+/* Updated Categories Styles */
+.categories-wrapper {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.categories-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.categories-header:hover {
+    background-color: var(--secondary-color);
+}
+
+.categories-title {
+    margin: 0;
+    font-weight: 600;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.categories-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.categories-content.expanded {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.categories-list {
+    padding: 1.5rem;
+}
+
+.category-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.category-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.category-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.category-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+.action-btn.edit {
+    background: var(--warning-color);
+}
+
+.action-btn.delete {
+    background: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+.table th {
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.table td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+}
+
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.table th {
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.table td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out forwards;
+    border-radius: 1rem;
+}
+
+.btn-custom {
+        font-weight: bold;
+        padding: 8px 15px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn-custom i {
+        font-size: 1.2rem; /* Adjust the size of the icon */
+        margin-right: 8px;
+    }
+    .btn-custom span {
+        margin-left: 5px;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        border-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Secondary button color */
+        border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker secondary on hover */
+        border-color: #545b62;
+    }
+</style>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="mb-1">{% trans "Asset Management" %}</h4>
+                    <p class="text-muted mb-0">{% trans "Manage and monitor all your Assets" %}</p>
+                </div>
+                <div>
+                    <a href="{% url 'asset_create' %}" class="btn btn-primary btn-sm d-flex align-items-center">
+                        <i class="fa-solid fa-square-plus p-1"></i>
+                        <span class="ml-2">{% trans "Add New Asset" %}</span>
+                    </a>
+                    <a href="#" class="btn btn-success btn-sm d-flex align-items-center" data-toggle="modal" data-target="#addAssetCategoryModal">
+                        <i class="fa-solid fa-square-plus p-1"></i>
+                        <span class="ml-2">{% trans "Add New Asset Categories" %}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="addAssetCategoryModal" tabindex="-1" aria-labelledby="addAssetCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAssetCategoryModalLabel">{% trans "Add New Asset Category" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{% url 'asset_type' %}" id="assetTypeForm">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="id_name" name="name" required>
+                        <div class="invalid-feedback">{% trans "Please enter a category name." %}</div>
+                    </div>
+                    <div id="form-error" class="alert alert-danger" style="display: none;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Button to trigger modal -->
+
+<!-- Updated Categories Section -->
+<div class="container-fluid mt-3">
+    <div class="categories-wrapper">
+        <div class="categories-header" onclick="toggleCategories()">
+            <h5 class="categories-title">{% trans "Asset Categories" %}</h5>
+            <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        
+        <div class="categories-content" id="categoriesContent">
+            <div class="row categories-list">
+                {% for type in asset_types %}
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <div class="category-item">
+                        <div class="category-name">{{ type.name }}</div>
+                        <div class="category-actions">
+                            <a href="{% url 'type-edit' type.pk %}" class="action-btn edit" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'asset-type-delete' type.pk %}" class="action-btn delete" onclick="return confirmDelete();" title="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assets List Card -->
+<div class="row mt-5">
+    <div class="col-12">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>{% trans "Assets List" %}</span>
+        </div>
+        <div class="card-body">
+            {% if dashboard_type == "master_admin" %}
+            <div class="filter-form-container">
+                <form method="get" class="form-inline">
+                    <div class="form-group">
+                        <label for="filter_type">Filter by:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="filter_type" id="filter_head_office" value="head_office" {% if selected_filter == "head_office" %}checked{% endif %}>
+                            <label class="form-check-label" for="filter_head_office">Head Office</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="filter_type" id="filter_branch" value="branch" {% if selected_filter == "branch" %}checked{% endif %}>
+                            <label class="form-check-label" for="filter_branch">Branch</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="head_office">Head Office:</label>
+                        <select name="head_office" id="head_office" class="form-control" {% if selected_filter != "head_office" %}disabled{% endif %}>
+                            <option value="">All Head Offices</option>
+                            {% for ho in head_offices %}
+                                <option value="{{ ho.id }}" {% if ho.id|stringformat:"s" == selected_head_office %}selected{% endif %}>
+                                    {{ ho.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">Branch:</label>
+                        <select name="branch" id="branch" class="form-control" {% if selected_filter != "branch" %}disabled{% endif %}>
+                            <option value="">{% trans "All Branches" %}</option>
+                            {% for branch in branches %}
+                                <option value="{{ branch.id }}" {% if branch.id|stringformat:"s" == selected_branch %}selected{% endif %}>
+                                    {{ branch.branch_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <svg class="bi bi-filter-square-fill" fill="currentColor" height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm.5 5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1 0-1zM4 8.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm2 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            {% elif dashboard_type == "head_office" %}
+            <div class="filter-form-container">
+                <form method="get" class="form-inline">
+                    <div class="form-group">
+                        <label for="branch">Branch:</label>
+                        <select name="branch" id="branch" class="form-control">
+                            <option value="">{% trans "All Branches" %}</option>
+                            {% for branch in branches %}
+                                <option value="{{ branch.id }}" {% if branch.id|stringformat:"s" == selected_branch %}selected{% endif %}>
+                                    {{ branch.branch_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <svg class="bi bi-filter-square-fill" fill="currentColor" height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm.5 5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1 0-1zM4 8.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm2 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+            <div class="search-form-container">
+                <form method="get" action="{% url 'asset_list' %}" class="form-inline">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search Asset Category/Asset" value="{{ search_query }}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                
+                <div class="export-buttons mb-3">
+                    
+                    <a href="{% url 'upload_assets' %}" class="btn btn-info">
+                        <i class="fas fa-upload "></i> {% trans "Upload Excel" %}
+                    </a>
+
+                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th class="border-0 rounded-start">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "No" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Asset Code" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Category" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Name" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Image" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "QR Code" %}</div>
+                                            </th>
+                                            <th class="border-0">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Sold Status" %}</div>
+                                            </th>
+                                            <th class="border-0 rounded-end text-end">
+                                                <div class="text-muted text-uppercase small fw-bold">{% trans "Actions" %}</div>
+                                            </th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                        {% for item in assets %}
+                                        <tr class="align-middle">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ item.asset.asset_code }}</td>
+                                            <td>{{ item.asset.asset_type.name }}</td>
+                                            <td>{{ item.asset.asset_name }}</td>
+                                            <td>
+                                                {% if item.asset.images.all %}
+                                                    <img src="{{ item.asset.images.first.image.url }}" alt="{{ item.asset.asset_name }}" width="100" style="height: 100px;">
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'asset_link' item.asset.id %}" target="_blank">
+                                                    <img src="{{ item.qr_code_url }}" alt="QR Code" width="100">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {% if item.asset.is_sold %}
+                                                    <span class="text-danger">{% trans "Sold" %}</span>
+                                                {% else %}
+                                                    <span class="text-success">{% trans "Available" %}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-2 justify-content-end">
+                                                    <a href="{% url 'asset_detail' item.asset.pk %}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" title="View Details">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="{% url 'asset_edit' item.asset.pk %}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title="Edit Asset">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ item.asset.pk }})" data-bs-toggle="tooltip" title="Delete Asset">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                    <a href="{% url 'download_qr_code' asset_id=item.asset.id %}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Download QR Code">
+                                                        <i class="fas fa-download"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="text-center py-5">
+                                                    <div class="avatar-lg mb-3 mx-auto">
+                                                        <i class="fas fa-box fa-3x text-muted"></i>
+                                                    </div>
+                                                    <h5 class="text-muted font-weight-normal">{% trans "No Assets found" %}</h5>
+                                                    <p class="mb-0 text-muted">{% trans 'Click "Add Asset" to create your first asset' %}</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            
+            
+            <nav aria-label="Page navigation" class="pagination-container">
+                <ul class="pagination">
+                    {% if assets.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">&laquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ assets.previous_page_number }}">{{ assets.previous_page_number }}</a>
+                        </li>
+                    {% endif %}
+            
+                    <li class="page-item active">
+                        <span class="page-link">{{ assets.number }}</span>
+                    </li>
+            
+                    {% if assets.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ assets.next_page_number }}">{{ assets.next_page_number }}</a>
+                        </li>
+                        {% if assets.next_page_number != assets.paginator.num_pages %}
+                            <li class="page-item">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ assets.paginator.num_pages }}">{{ assets.paginator.num_pages }}</a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ assets.paginator.num_pages }}">&raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const filterHeadOffice = document.getElementById('filter_head_office');
+    const filterBranch = document.getElementById('filter_branch');
+    const headOfficeSelect = document.getElementById('head_office');
+    const branchSelect = document.getElementById('branch');
+
+    function toggleDropdowns() {
+        if (filterHeadOffice.checked) {
+            headOfficeSelect.disabled = false;
+            branchSelect.disabled = true;
+        } else if (filterBranch.checked) {
+            headOfficeSelect.disabled = true;
+            branchSelect.disabled = false;
+        }
+    }
+
+    filterHeadOffice.addEventListener('change', toggleDropdowns);
+    filterBranch.addEventListener('change', toggleDropdowns);
+
+    toggleDropdowns(); // Initial call to set the correct state on page load
+});
+
+$(document).ready(function() {
+    $('.export-buttons a').click(function() {
+        let button = $(this);
+        let originalText = button.html();
+        
+        button.prop('disabled', true);
+        button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Exporting...');
+        
+        setTimeout(() => {
+            button.prop('disabled', false);
+            button.html(originalText);
+        }, 3000);
+    });
+});
+
+function toggleCategories() {
+    const content = document.getElementById('categoriesContent');
+    const icon = document.querySelector('.toggle-icon');
+    content.classList.toggle('expanded');
+    icon.classList.toggle('rotated');
+}
+
+
+function confirmDelete(assetId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This asset will be permanently deleted!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+        borderRadius: '1rem'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to delete URL or make an AJAX call to delete the asset
+            window.location.href = `/asset/${assetId}/delete/`;
+        }
+    });
+}
+
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+});
+
+$(document).ready(function() {
+    // Get CSRF token from the cookie
+    function getCSRFToken() {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith('csrftoken=')) {
+                    cookieValue = decodeURIComponent(cookie.substring('csrftoken='.length));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+
+// Update the AJAX submission to include proper error handling and CSRF token
+// Document Ready Function
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap components
+    var modal = new bootstrap.Modal(document.getElementById('addAssetCategoryModal'));
+
+    // Form submission handling
+    const assetTypeForm = document.getElementById('assetTypeForm');
+    if (assetTypeForm) {
+        assetTypeForm.addEventListener('submit', function(e) {
+            const nameInput = document.getElementById('id_name');
+            const formError = document.getElementById('form-error');
+
+            // Basic validation
+            if (!nameInput.value.trim()) {
+                e.preventDefault();
+                nameInput.classList.add('is-invalid');
+                formError.textContent = 'Category name is required';
+                formError.style.display = 'block';
+                return false;
+            }
+
+            // If validation passes, form will submit normally
+            return true;
+        });
+    }
+
+    // Clear validation on input
+    const nameInput = document.getElementById('id_name');
+    if (nameInput) {
+        nameInput.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+            document.getElementById('form-error').style.display = 'none';
+        });
+    }
+
+    // Reset form when modal is closed
+    const addAssetCategoryModal = document.getElementById('addAssetCategoryModal');
+    if (addAssetCategoryModal) {
+        addAssetCategoryModal.addEventListener('hidden.bs.modal', function() {
+            if (assetTypeForm) {
+                assetTypeForm.reset();
+                const formError = document.getElementById('form-error');
+                if (formError) {
+                    formError.style.display = 'none';
+                }
+                if (nameInput) {
+                    nameInput.classList.remove('is-invalid');
+                }
+            }
+        });
+    }
+});
+
+
+
+
+
+$(document).ready(function() {
+    $('#assetTypeForm').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Close the modal
+                    $('#addAssetCategoryModal').modal('hide');
+                    
+                    // Clear the form
+                    form[0].reset();
+                    
+                    // Show success message
+                    alert('Asset category added successfully!');
+                    
+                    // Optionally, update your page content here
+                    // For example, you could reload a list of asset types
+                    // loadAssetTypes();
+                }
+            },
+            error: function(xhr, status, error) {
+                var response = xhr.responseJSON;
+                if (response && response.errors) {
+                    var errorHtml = '';
+                    $.each(response.errors, function(field, errors) {
+                        errorHtml += errors.join(', ') + '<br>';
+                    });
+                    $('#form-error').html(errorHtml).show();
+                    
+                    // Specifically handle the "already exists" error
+                    if (response.errors.name && response.errors.name.includes('This asset type already exists.')) {
+                        $('#id_name').addClass('is-invalid');
+                        $('.invalid-feedback').text('This asset type already exists.').show();
+                    }
+                } else {
+                    $('#form-error').html('An error occurred. Please try again.').show();
+                }
+            }
+        });
+    });
+
+    // Clear error messages when the input changes
+    $('#id_name').on('input', function() {
+        $(this).removeClass('is-invalid');
+        $('.invalid-feedback').hide();
+        $('#form-error').hide();
+    });
+});
+
+
+</script>
+
+<!-- Bootstrap and jQuery Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- In your base template or current template -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle includes Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+{% endblock %}

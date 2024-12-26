@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #2563eb;
+            --background-color: #f8fafc;
+            --card-color: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--background-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .company-info {
+            text-align: right;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .company-address {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* Asset Table Styles */
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .asset-table th, .asset-table td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .asset-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .asset-table td {
+            background-color: white;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 15px 0;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-weight: 500;
+        }
+
+        .asset-trace-text {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .company-info {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                {% if office_logo %}
+                    <img src="{{ office_logo }}" alt="{{ office_name }}" class="company-logo">
+                {% endif %}
+            </div>
+            <div class="company-info">
+                <div class="company-name">{{ office_name }}</div>
+                <div class="company-address"><i class="fas fa-map-marker-alt text-danger me-2"></i>  {{ office_address }}</div>
+                <div class="company-address"><i class="fas fa-building"></i>  {{ department.dpt_name }}</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <table class="asset-table">
+            <thead>
+                <tr>
+                    <th>{% trans 'Asset Name' %}</th>
+                    <th>{% trans 'Asset Code' %}</th>
+                    <th>{% trans 'Category' %}</th>
+                    <th>{% trans 'Model' %}</th>
+                    <th>{% trans 'Serial Number' %}</th>
+                    <th>{% trans 'Purchase Date' %}</th>
+                    <th>{% trans 'Status' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asset in assets %}
+                <tr>
+                    <td>{{ asset.asset_name }}</td>
+                    <td>{{ asset.asset_code }}</td>
+                    <td>{{ asset.asset_type.name }}</td>
+                    <td>{% if asset.model %}{{ asset.model }}{% else %}N/A{% endif %}</td>
+                    <td>{% if asset.serial_number %}{{ asset.serial_number }}{% else %}N/A{% endif %}</td>
+                    <td>{% if asset.purchase_date %}{{ asset.purchase_date }}{% else %}N/A{% endif %}</td>
+                    <td>
+                        <span class="status-badge status-active">
+                            <i class="fas fa-check-circle"></i> Active
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                {% trans 'Powered by' %} <span class="asset-trace-text">Asset Trace</span>
+            </div>
+            <div class="footer-copyright">
+                © {% now "Y" %} <a href="https://gaudesolutions.com/" class="text-white">Gaude AI Solutions</a>. {% trans 'All rights reserved.' %}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

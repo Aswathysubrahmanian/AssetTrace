@@ -1,0 +1,517 @@
+{% extends 'authentication/dashboard.html' %}
+{% load i18n %}
+{% block body %}
+<div class="container-fluid py-4">
+    <div class="custom-card">
+        <div class="card-decoration"></div>
+        <div class="card-header-custom">
+            <div class="header-icon">
+                <i class="fas fa-box-archive"></i>
+            </div>
+            <h3>{% trans "Asset Details" %}</h3>
+            <p class="text-muted">{% trans "Complete information about" %} {{ asset.asset_name }}</p>
+        </div>
+
+        <div class="card-body-custom">
+            <!-- Status Banner -->
+            <div class="status-banner {% if asset.is_sold %}sold{% else %}available{% endif %}">
+                <div class="status-icon">
+                    <i class="fas {% if asset.is_sold %}fa-check-circle{% else %}fa-clock{% endif %}"></i>
+                </div>
+                <div class="status-content">
+                    <h4>{% if asset.is_sold %}{% trans "Sold" %}{% else %}{% trans "Available" %}{% endif %}</h4>
+                    <p>{% if asset.is_sold %}{% trans "This asset has been sold on:" %} {{ asset.sold_date }}{% else %}{% trans "This asset is currently available" %}{% endif %}</p>
+                </div>
+                <div class="status-action">
+                    {% if asset.is_sold %}
+                        <form method="POST" action="{% url 'mark_as_unsold' asset.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="action-button warning">
+                                <i class="fas fa-undo"></i>
+                                {% trans "Mark as Unsold" %}
+                            </button>
+                        </form>
+                    {% else %}
+                        <form method="POST" action="{% url 'sell_asset' asset.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="action-button success">
+                                <i class="fas fa-check"></i>
+                                {% trans "Mark as Sold" %}
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Information Sections -->
+            <div class="info-sections">
+                <!-- Basic Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h4>{% trans "Basic Information" %}</h4>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>{% trans "Asset Code" %}</label>
+                            <p>{{ asset.asset_code }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Asset Type" %}</label>
+                            <p>{{ asset.asset_type.name }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Name" %}</label>
+                            <p>{{ asset.asset_name }}</p>
+                        </div>
+                        {% if asset.model %}
+                        <div class="info-item">
+                            <label>{% trans "Model" %}</label>
+                            <p>{{ asset.model }}</p>
+                        </div>
+                        {% endif %}
+                        {% if asset.serial_number %}
+                        <div class="info-item">
+                            <label>{% trans "Serial Number" %}</label>
+                            <p>{{ asset.serial_number }}</p>
+                        </div>
+                        {% endif %}
+                        {% if asset.purchase_date %}
+                        <div class="info-item">
+                            <label>{% trans "Purchase Date" %}</label>
+                            <p>{{ asset.purchase_date }}</p>
+                        </div>
+                        {% endif %}
+                        {% if asset.warranty_info %}
+                        <div class="info-item">
+                            <label>{% trans "Warranty Info" %}</label>
+                            <p>{{ asset.warranty_info }}</p>
+                        </div>
+                        {% endif %}
+                        {% if asset.price %}
+                        <div class="info-item">
+                            <label>{% trans "Price" %}</label>
+                            <p>USZ {{ asset.price }}</p>
+                            <p>USD {{ asset.price_in_usd }}</p>
+                        </div>
+                        {% endif %}
+                        {% if asset.verified %}
+                        <div class="info-item">
+                            <label>{% trans "Verification Status" %}</label>
+                            <p><i class="fas fa-check-circle" style="color: green;"></i> {% trans "Verified" %}</p>
+                            <span class="text-success">
+                                {% if asset.verified_by %}
+                                    {% trans "by" %} {{ asset.verified_by.username }}
+                                {% endif %}
+                                {% if asset.verified_date %}
+                                    {% trans "on" %} {{ asset.verified_date|date:"F d, Y H:i" }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        {% else %}
+                        <div class="info-item">
+                            <label>{% trans "Verification Status" %}</label>
+                            <i class="fas fa-times-circle" style="color: red;"></i> {% trans "Unverified" %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Custodial Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-building"></i>
+                        <h4>{% trans "Custodial Information" %}</h4>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>{% trans "Head Office" %}</label>
+                            <p>{{ asset.office.name }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Branch" %}</label>
+                            <p>{{ asset.branch.branch_name }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Department" %}</label>
+                            <p>{{ asset.department.dpt_name }}</p>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Custodian" %}</label>
+                            {% if asset.custodian %}
+                            <p>{{ asset.custodian }}</p>
+                            {% else %}
+                            <p>{{ asset.branch.prefix }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Fields -->
+                {% if asset.custom_fields.count %}
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>{% trans "Additional Information" %}</h4>
+                    </div>
+                    <div class="info-grid">
+                        {% for field in asset.custom_fields.all %}
+                        <div class="info-item">
+                            <label>{{ field.field_name }}</label>
+                            <p>{{ field.field_value }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Depreciation Details -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>{% trans "Depreciation Details" %}</h4>
+                    </div>
+                    <div class="depreciation-table">
+                        {% if asset.depreciation_set.exists %}
+                            <div class="table-header">
+                                <span>{% trans "Year" %}</span>
+                                <span>{% trans "Amount" %}</span>
+                            </div>
+                            {% for depreciation in asset.depreciation_set.all %}
+                            <div class="table-row">
+                                <span>{{ depreciation.year }}</span>
+                                <span>{{ depreciation.amount }}</span>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-data">{% trans "No depreciation calculated yet." %}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Documents -->
+                {% if asset.bills.all %}
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>{% trans "Documents" %}</h4>
+                    </div>
+                    <div class="documents-grid">
+                        {% for bill in asset.bills.all %}
+                        <a href="{{ bill.bill_file.url }}" download class="document-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>{{ bill.bill_file.name }}</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- QR Code -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-qrcode"></i>
+                        <h4>{% trans "QR Code" %}</h4>
+                    </div>
+                    <div class="qr-container">
+                        <img src="{{ qr_code_base64 }}" alt="QR Code">
+                        <p>{% trans "Scan to view asset details" %}</p>
+                    </div>
+                </div>
+
+                <!-- Images -->
+                {% if asset.images.all %}
+                <div class="info-section">
+                    <div class="section-header">
+                        <i class="fas fa-images"></i>
+                        <h4>{% trans "Asset Images" %}</h4>
+                    </div>
+                    <div class="image-gallery">
+                        {% for image in asset.images.all %}
+                        <div class="gallery-item">
+                            <img src="{{ image.image.url }}" alt="{{ asset.asset_name }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .card-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    }
+
+    .card-header-custom {
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .header-icon i {
+        font-size: 24px;
+        color: #4776E6;
+    }
+
+    .status-banner {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .status-banner.available {
+        background: #fff8f1;
+        border: 1px solid #ffd5a4;
+    }
+
+    .status-banner.sold {
+        background: #f1fff8;
+        border: 1px solid #a4ffd5;
+    }
+
+    .status-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+    }
+
+    .available .status-icon {
+        background: #fff2e3;
+        color: #ff9500;
+    }
+
+    .sold .status-icon {
+        background: #e3fff2;
+        color: #00ff95;
+    }
+
+    .status-content {
+        flex: 1;
+    }
+
+    .status-content h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .status-content p {
+        margin: 4px 0 0;
+        color: #6c757d;
+    }
+
+    .action-button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .action-button.success {
+        background: #00ff95;
+        color: #006638;
+    }
+
+    .action-button.warning {
+        background: #ff9500;
+        color: #663800;
+    }
+
+    .info-sections {
+        padding: 2rem;
+    }
+
+    .info-section {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header i {
+        font-size: 20px;
+        color: #4776E6;
+    }
+
+    .section-header h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+    }
+
+    .info-item label {
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .info-item p {
+        margin: 0;
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    .depreciation-table {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+    }
+
+    .table-header {
+        background: #f8f9fa;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-weight: 600;
+    }
+
+    .table-row {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .documents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .document-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #2c3e50;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .document-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .qr-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .qr-container img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+        width: 30%;
+        height: 30%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+        .status-banner {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .status-icon {
+            margin: 0 0 1rem;
+        }
+
+        .status-action {
+            margin-top: 1rem;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Include Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
