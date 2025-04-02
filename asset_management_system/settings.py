@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h39qpt%&oa^^#nbv^v1&41nzfi8#oze*bqoli-+00&_om(xmb$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://assettrace.helpybo.com/']
+ALLOWED_HOSTS = ['assettrace.helpybo.com']
 
 
 
